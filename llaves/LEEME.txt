@@ -1,0 +1,7 @@
+Dentro de esta carpeta se debe colocar los siguientes archivos
+Certificado como 888888_8.cer usado en send_xml.php
+Llave Pública como 88888_8.pub usado en de.php
+Llave Privada protegida con contraseña como 888888_8.key usado en de.php
+Y la misma Llave Privada sin contraseña como 888888_8_send.key usado en send_xml.php el cual será utilizado para la conexión y autenticación al momento de la conexión a los WEBAPI de la SIFEN
+
+Todos estos archivos son generados a partir de la llave 888888_8.bcfks adquirido de las entidades autorizadas actuales y generadas con el programa https://keystore-explorer.org/downloads.html
