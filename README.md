@@ -13,14 +13,14 @@ Se debe crear una carpeta llaves dentro de la cual se deberá meter las llaves n
 1. El archivo de.php es el encargado de generar el archivo xml firmado que luego lo guarda dentro de la carpeta de/ con el nombre del número de Id enviado
 2. El archivo sedn_xml.php lo que hace es enviar el archivo generado previamente y ya firmado a los servidores de la SIFEN
 3. El archivo aravo.php en este momento lo que hace es traer la hora de los servidores proporcionados por la SIFEN ya que la hora no debe estar adelantado al momento de hacer el envío del xml según la referencia de estos servidores
-4 .El archivo test.php muestra el funcionamiento del archivo de.php enviando un JSON al mismo y generando así un archivo firmado.
+4. El archivo test.php muestra el funcionamiento del archivo de.php enviando un JSON al mismo y generando así un archivo firmado.
 
 5. En caso de querer implementar se debe enviar un archivo JSON a de.php para que genere el archivo xml pedido por la SIFEN.
 6. Los detalles y ejemplo del JSON y las necesidades de las mismas puedes encontrarlas tanto en el archivo test.php como en el manual de la SIFEN
 
 # Necesidades de PHP
 1. En el archivo ini.php o en su servidor habilitar openssl para todo lo referente a la firma
-2. Para la Utilización de aravo.php se debe habilitar socket
+2. Para la utilización de aravo.php se debe habilitar socket
 
 # Ayudas
 1. Si necesitan alguna ayuda con la implementación de la misma pueden contactar con PAULO DANIEL VILLAMAYOR al +595 992 625873 Tracertsystem
