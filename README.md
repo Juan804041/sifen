@@ -9,7 +9,7 @@ De momento hago una pequeña descripción de los archivos
 # Notas:
 Se debe crear una carpeta llaves dentro de la cual se deberá meter las llaves necesarias para el funcionamiento de la api
 
-# Nota:
+# Modo de USO de las librerías:
 1. El archivo de.php es el encargado de generar el archivo xml firmado que luego lo guarda dentro de la carpeta de/ con el nombre del número de Id enviado
 2. El archivo sedn_xml.php lo que hace es enviar el archivo generado previamente y ya firmado a los servidores de la SIFEN
 3. El archivo aravo.php en este momento lo que hace es traer la hora de los servidores proporcionados por la SIFEN ya que la hora no debe estar adelantado al momento de hacer el envío del xml según la referencia de estos servidores
