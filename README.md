@@ -17,3 +17,7 @@ Se debe crear una carpeta llaves dentro de la cual se deberá meter las llaves n
 
 5. En caso de querer implementar se debe enviar un archivo JSON a de.php para que genere el archivo xml pedido por la SIFEN.
 6. Los detalles y ejemplo del JSON y las necesidades de las mismas puedes encontrarlas tanto en el archivo test.php como en el manual de la SIFEN
+
+# Necesidades de PHP
+1. En el archivo ini.php o en su servidor habilitar openssl para todo lo referente a la firma
+2. Para la Utilización de aravo.php se debe habilitar socket
