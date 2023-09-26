@@ -21,3 +21,7 @@ Se debe crear una carpeta llaves dentro de la cual se deberá meter las llaves n
 # Necesidades de PHP
 1. En el archivo ini.php o en su servidor habilitar openssl para todo lo referente a la firma
 2. Para la Utilización de aravo.php se debe habilitar socket
+
+# Ayudas
+1. Si necesitan alguna ayuda con la implementación de la misma pueden contactar con PAULO DANIEL VILLAMAYOR al +595 992 625873 Tracertsystem
+2. O Juan Zamphirópolos +595 961 804041
