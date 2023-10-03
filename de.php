@@ -1,6 +1,9 @@
 <?php
 header ("Content-Type:text/xml");
 
+//Necesario para la generación del hash del QR
+$codigo_secreto = "ABCD0000000000000000000000000000";
+
 //Recibimos el JSON con los datos de la factura
 $json = file_get_contents('php://input');
 
@@ -9,7 +12,9 @@ $json_de = json_decode($json, true);
 
 //Generamos los items a ser de la factura
 $items = "";
+$cItems = 0; //Contador de la cantidad de items
 foreach($json_de['items'] as $item){
+	$cItems ++; //Sumar 1 por cada item
     $items .= <<<EOF
     <gCamItem>
         <dCodInt>{$item['dCodInt']}</dCodInt>
@@ -205,11 +210,11 @@ $xml->loadXML($xml_crudo);
 $root = $xml->documentElement;
 $signature = $xml->createElementNS('http://www.w3.org/2000/09/xmldsig#', 'Signature');
 $root->appendChild($signature);
-|
+
 //Crear un objeto de referencia
 $reference = $xml->createElement('Reference');
 $signature->appendChild($reference);
-$reference->setAttribute('URI', $json_de['DE'][0]['Id']);
+$reference->setAttribute('URI', '#' . $json_de['DE'][0]['Id']);
 
 //Crear el objeto de transformación
 $transforms = $xml->createElement('Transforms');
@@ -246,6 +251,39 @@ $keyInfo->appendChild($x509Data);
 //Crear el objeto X509Certificate y establecer el valor del certificado
 $x509Certificate = $xml->createElement('X509Certificate', $publicKeyPEM);
 $x509Data->appendChild($x509Certificate);
+
+//Crear el objeto para el QR
+$gCamFuFD = $xml->createElement('gCamFuFD');
+$root->appendChild($gCamFuFD);
+
+//Creación del HASH del QR
+$concatenado = "nVersion=150&Id=" . $json_de['DE'][0]['Id'] . "&dFeEmiDE=" . bin2hex($json_de['DE'][0]['dFeEmiDE']) . "&dRucRec=" . $json_de['DE'][0]['dRucRec'] . "&dTotGralOpe=" . $json_de['gTotSub'][0]['dTotGralOpe'] . "&dTotIVA=" . $json_de['gTotSub'][0]['dTotIVA'] . "&cItems=" . $cItems . "&DigestValue=" . bin2hex($digestValue) . "&IdCSC=0001";
+$concat_mas_codigo = $concatenado . $codigo_secreto;
+$hash_qr = hash('sha256', $concat_mas_codigo);
+
+//Crear un objeto de referencia al código QR
+$enlaceQR = "https://www.ekuatia.set.gov.py/consultas-test/qr?" . $concatenado . "&cHashQR=" . $hash_qr;
+//$enlaceQR = "https://ekuatia.set.gov.py/consultas/qr?" . $concatenado . "&cHashQR=" . $hash_qr;
+$enlace_qr_cambio = str_replace("&","&amp;",$enlaceQR); //Antes de la inserción de la URL en el XML, se deberá reemplazar los símbolos “&” por su equivalente en código html, el cual es “&amp;”.
+$dCarQR = $xml->createElement('dCarQR', $enlace_qr_cambio); 
+$gCamFuFD->appendChild($dCarQR);
+
+//Generamos el QR para poder usar en la impresión
+//Librería usada para generar el QR https://github.com/kreativekorp/barcode
+include 'lib/barcode-master/barcode.php';
+$generator = new barcode_generator();
+/* Create bitmap image and write to file. */
+$image = $generator->render_image("qr", $enlaceQR,"");
+$filename = 'de/' . $json_de['DE'][0]['Id'] . '.png';
+imagepng($image, $filename);
+imagedestroy($image);
+
+//Agregamos el último valor dProtAut - Este valor es devuelto por la SIFEN y se incluye luego de haber enviado el xml, nosotros no lo calculamos
+/*
+$valordProtAut = "555555";
+$dProtAut = $xml->createElement('dProtAut', $valordProtAut);
+$root->appendChild($dProtAut);
+*/
 
 //Guardar el XML firmado en un archivo con el Id
 $xml->save('de/' . $json_de['DE'][0]['Id'] . '.xml');

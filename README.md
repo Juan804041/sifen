@@ -1,4 +1,4 @@
-# sifen V: 0.1.0
+# sifen V: 0.2.0
 API de Conexión y Generación de Factura de la SET/SIFEN Paraguay
 
 Aquí iremos actualizando todo lo que se pueda sobre el sistema de facturación de la SIFEN y esta nueva API con todo lo necesario.
@@ -24,3 +24,14 @@ Se debe crear una carpeta llaves dentro de la cual se deberá meter las llaves n
 # Ayudas
 1. Si necesitan alguna ayuda con la implementación de la misma pueden contactar con PAULO DANIEL VILLAMAYOR al +595 992 625873 Tracertsystem
 2. O Juan Zamphirópolos +595 961 804041
+
+# sifen.php
+# nota:
+El archivo sifen.php ya es una clase en si misma.
+Se lo puede incluir directamente en su proyecto y hacer llamada directa
+
+```php
+include 'sifen.php'; //incluimos la librería
+$xml = new sifen(); //Creamos un objeto de la clase sifen
+echo $xml->generar_xml($json, "LocoFactura23", "80130124_6.key", "80130124_6.pub"); //Llamamos a la función generar_xml enviando los parametros a ser usados
+```

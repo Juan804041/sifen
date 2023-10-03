@@ -6,9 +6,9 @@ $json =
 '{"dVerFor":150,
     "DE":[
         {
-            "Id":"47854785478547854785",
+            "Id":"01800261658019002007094122023091018521597072",
             "dDVId":0,
-            "dFecFirma":"2020-06-16T00:00:00",
+            "dFecFirma":"2023-10-01T00:00:00",
             "dSisFact":5,
             "iTipEmi":1,
             "dDesTipEmi":"Normal",
@@ -21,7 +21,7 @@ $json =
 			"dNumDoc":"0036979",
 			"dSerieNum":"AA",
 			"dFeIniT":"2022-11-21",
-            "dFeEmiDE":"2023-06-16T00:00:00",
+            "dFeEmiDE":"2023-10-01T00:00:00",
             "iTipTra":1,
             "dDesTipTra":"Venta de mercadería",
             "iTImp":1,
@@ -162,6 +162,17 @@ $json =
     ]
 }';
 
+include 'sifen.php';
+
+$xml = new sifen();
+
+echo $xml->generar_xml($json, "LocoFactura23", "80130124_6.key", "80130124_6.pub");
+
+//echo $xml->enviar_xml("01800261658019002007094122023091018521597072", "80130124_6_send.key", "80130124_6.cer");
+
+//echo $xml->aravo();
+
+/*
 //Obtener el dominio actual
 $dominio = $_SERVER['HTTP_HOST'];
 
@@ -197,4 +208,5 @@ curl_close($ch);
 
 //Maneja la respuesta del servidor
 echo $response;
+*/
 ?>
