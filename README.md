@@ -26,7 +26,6 @@ Se debe crear una carpeta llaves dentro de la cual se deberá meter las llaves n
 2. O Juan Zamphirópolos +595 961 804041
 
 # sifen.php
-# nota:
 El archivo sifen.php ya es una clase en si misma.
 Se lo puede incluir directamente en su proyecto y hacer llamada directa
 
