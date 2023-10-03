@@ -30,7 +30,7 @@ El archivo sifen.php ya es una clase en si misma.
 Se lo puede incluir directamente en su proyecto y hacer llamada directa
 
 ```php
-include 'sifen.php'; //incluimos la librería
+include 'sifen.php'; //Incluimos la librería
 $xml = new sifen(); //Creamos un objeto de la clase sifen
 echo $xml->generar_xml($json, "LocoFactura23", "80130124_6.key", "80130124_6.pub"); //Llamamos a la función generar_xml enviando los parametros a ser usados
 ```
