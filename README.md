@@ -32,5 +32,6 @@ Se lo puede incluir directamente en su proyecto y hacer llamada directa
 ```php
 include 'sifen.php'; //Incluimos la librería
 $xml = new sifen(); //Creamos un objeto de la clase sifen
-echo $xml->generar_xml($json, "LocoFactura23", "80130124_6.key", "80130124_6.pub"); //Llamamos a la función generar_xml enviando los parametros a ser usados
+echo $xml->generar_xml($json, "contraseña", "llave_privada.key", "llave_publica.pub"); //Llamamos a la función generar_xml enviando los parametros a ser usados
+$xml->enviar_xml('01800261658019002007094122023091018521597073','llave_privada_abierta.key','certificado.cer'); //Llamamos a la función para enviar el archivo a la SIFEN
 ```
