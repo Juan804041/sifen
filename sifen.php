@@ -54,7 +54,6 @@ class sifen{
 
 
         //Reemplazamos los datos dentro del modelo XML con los datos enviados
-        //Recordar luego volver a sacar todos los tabs
         $xml_crudo = <<<EOF
         <rDE xmlns="http://ekuatia.set.gov.py/sifen/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ekuatia.set.gov.py/sifen/xsd siRecepDE_v150.xsd">
             <dVerFor>{$json_de['dVerFor']}</dVerFor>
@@ -173,15 +172,15 @@ class sifen{
         EOF;
 
         //Comenzamos la parte de la firma
-        //Leer el contenido de la clave pública desde un archivo PEM
-        $publicKeyPEM = file_get_contents('llaves/' . $name_llave_publica);
+        //Leer el contenido de la clave pública desde un archivo .PUB
+        $publicKeyPUB = file_get_contents(__DIR__ . '/llaves/' . $name_llave_publica);
 
         //Elimina las etiquetas BEGIN y END y otros caracteres no deseados
-        $publicKeyPEM = str_replace(array('-----BEGIN PUBLIC KEY-----', '-----END PUBLIC KEY-----', "\n", "\r", "\r\n"), '', $publicKeyPEM);
+        $publicKeyPUB = str_replace(array('-----BEGIN PUBLIC KEY-----', '-----END PUBLIC KEY-----', "\n", "\r", "\r\n"), '', $publicKeyPUB);
 
         //Cargar la clave privada desde un archivo PEM
         $keyPass = $pass_llave_privada;
-        $privateKey = openssl_pkey_get_private(file_get_contents('llaves/' . $name_llave_privada), $keyPass);
+        $privateKey = openssl_pkey_get_private(file_get_contents(__DIR__ . '/llaves/' . $name_llave_privada), $keyPass);
 
         //Lo que se procede a firmar es todo el contenido que ahora está en la variable $xml, una vez firmado ya tiene todos los otros datos salvo el QR
 
@@ -232,7 +231,7 @@ class sifen{
         $keyInfo->appendChild($x509Data);
 
         //Crear el objeto X509Certificate y establecer el valor del certificado
-        $x509Certificate = $xml->createElement('X509Certificate', $publicKeyPEM);
+        $x509Certificate = $xml->createElement('X509Certificate', $publicKeyPUB);
         $x509Data->appendChild($x509Certificate);
 
         //Crear el objeto para el QR
@@ -261,12 +260,12 @@ class sifen{
         $generator = new barcode_generator();
         /* Create bitmap image and write to file. */
         $image = $generator->render_image("qr", $enlaceQR,"");
-        $filename = 'de/' . $json_de['DE'][0]['Id'] . '.png';
+        $filename = __DIR__ . '/de/' . $json_de['DE'][0]['Id'] . '.png';
         imagepng($image, $filename);
         imagedestroy($image);
 
         //Guardar el XML firmado en un archivo con el Id
-        $xml->save('de/' . $json_de['DE'][0]['Id'] . '.xml');
+        $xml->save(__DIR__ . '/de/' . $json_de['DE'][0]['Id'] . '.xml');
         $xml = $xml->saveXML();
 
         if($retornar){
@@ -289,7 +288,7 @@ class sifen{
     function enviar_xml(string $num_xml, string $name_llave_privada, string $name_certificado, bool $produccion = false, bool $retornar = true){
         //Enviamos el archivo al servidor de prueba de la SIFEN
         //Ruta al archivo XML que deseas enviar
-        $rutaArchivoXML = 'de/' . $num_xml . '.xml';
+        $rutaArchivoXML = __DIR__ . '/de/' . $num_xml . '.xml';
 
         //URL de destino donde deseas enviar el archivo
         if($produccion){
@@ -299,13 +298,13 @@ class sifen{
         }
 
         //Ruta al archivo de clave privada correspondiente al certificado
-        $rutaClavePrivada = 'llaves/' . $name_llave_privada;
+        $rutaClavePrivada = __DIR__ . '/llaves/' . $name_llave_privada;
 
         //Contraseña de la clave privada (si es necesaria)
         //$contrasenaClavePrivada = 'password';
 
         //Ruta al archivo de certificado en formato .crt
-        $rutaCertificado = 'llaves/' . $name_certificado;
+        $rutaCertificado = __DIR__ . '/ llaves/' . $name_certificado;
 
         //Inicializa una sesión cURL
         $ch = curl_init();
@@ -343,7 +342,7 @@ class sifen{
         $response = curl_exec($ch);
 
         //Ruta donde deseas guardar el archivo XML
-        $rutaArchivo = 'de/' . $num_xml . '_respuesta_sifen.xml';
+        $rutaArchivo = __DIR__ . '/de/' . $num_xml . '_respuesta_sifen.xml';
 
         //Guardar el contenido XML de la SIFEN en el archivo
         file_put_contents($rutaArchivo, $response);
