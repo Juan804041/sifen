@@ -304,7 +304,7 @@ class sifen{
         //$contrasenaClavePrivada = 'password';
 
         //Ruta al archivo de certificado en formato .crt
-        $rutaCertificado = __DIR__ . '/ llaves/' . $name_certificado;
+        $rutaCertificado = __DIR__ . '/llaves/' . $name_certificado;
 
         //Inicializa una sesión cURL
         $ch = curl_init();
