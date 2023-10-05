@@ -163,52 +163,11 @@ $json =
 }';
 
 
-
 include 'sifen.php';
 
 $xml = new sifen();
 
-echo $xml->generar_xml($json, "LocoFactura23", "80130124_6.key", "80130124_6.pub");
+$xml->generar_xml($json, "LocoFactura23", "80130124_6.key", "80130124_6.pub");
 
-//echo $xml->enviar_xml("01800261658019002007094122023091018521597072", "80130124_6_send.key", "80130124_6.cer");
-
-//echo $xml->aravo();
-
-/*
-//Obtener el dominio actual
-$dominio = $_SERVER['HTTP_HOST'];
-
-//Obtener la carpeta actual (ruta relativa)
-$carpetaActual = dirname($_SERVER['REQUEST_URI']);
-
-//URL de destino
-$url = $dominio . $carpetaActual . '/de.php'; // Reemplaza esto con la URL a la que deseas enviar el JSON
-
-//Inicializa una sesión cURL
-$ch = curl_init($url);
-
-//Configura las opciones de cURL para una solicitud POST con datos JSON
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'Content-Type: application/json',
-    'Content-Length: ' . strlen($json)
-));
-
-//Captura la respuesta en lugar de imprimirla
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-//Realiza la solicitud cURL y obtén la respuesta
-$response = curl_exec($ch);
-
-//Verifica si hubo errores en la solicitud cURL
-if (curl_errno($ch)){
-    echo 'Error cURL: ' . curl_error($ch);
-}
-
-curl_close($ch);
-
-//Maneja la respuesta del servidor
-echo $response;
-*/
+echo $xml->enviar_xml("pueblo", "80130124_6_send.key", "80130124_6.cer");
 ?>

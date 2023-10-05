@@ -1,4 +1,4 @@
-# sifen V: 0.2.0
+# sifen V: 0.3.0
 API de Conexión y Generación de Factura de la SET/SIFEN Paraguay
 
 Aquí iremos actualizando todo lo que se pueda sobre el sistema de facturación de la SIFEN y esta nueva API con todo lo necesario.

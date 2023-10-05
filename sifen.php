@@ -1,6 +1,6 @@
 <?php
 class sifen{
-    /**
+     /**
      * Esta función genera el xml para ser enviado a la sifen.
      *
      * @param string $json Recibe un string en formato json con todos los datos del archivo xml.
@@ -55,7 +55,7 @@ class sifen{
 
         //Reemplazamos los datos dentro del modelo XML con los datos enviados
         $xml_crudo = <<<EOF
-        <rDE xmlns="http://ekuatia.set.gov.py/sifen/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ekuatia.set.gov.py/sifen/xsd siRecepDE_v150.xsd">
+        <rDE sxmlns="http://ekuatia.set.gov.py/sifen/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ekuatia.set.gov.py/sifen/xsd/siRecepDE_v150.xsd">
             <dVerFor>{$json_de['dVerFor']}</dVerFor>
             <DE Id="{$json_de['DE'][0]['Id']}">
                 <dDVId>{$json_de['DE'][0]['dDVId']}</dDVId>
@@ -183,19 +183,37 @@ class sifen{
         $privateKey = openssl_pkey_get_private(file_get_contents(__DIR__ . '/llaves/' . $name_llave_privada), $keyPass);
 
         //Lo que se procede a firmar es todo el contenido que ahora está en la variable $xml, una vez firmado ya tiene todos los otros datos salvo el QR
-
         //Cargar el archivo XML que deseas firmar
         $xml = new DOMDocument();
         $xml->loadXML($xml_crudo);
+        
+        //Se procede a canonizar y firmar el xml formado arriba, se canoniza con la función C14N del objeto DOMDocument()
+        openssl_sign($xml->C14N(), $signatureValue, $privateKey, OPENSSL_ALGO_SHA256);
+
+        //Calcular el valor de DigestValue (hash del contenido)
+        $digestValue = base64_encode(hash('sha256',$xml->C14N()));
 
         //Crear un objeto de firma XML
         $root = $xml->documentElement;
-        $signature = $xml->createElementNS('http://www.w3.org/2000/09/xmldsig#', 'Signature');
+        $signature = $xml->createElement('Signature');
         $root->appendChild($signature);
+        
+        //Creamos un objeto para poner dentro el resto SignedInfo
+        $signedInfo = $xml->createElement('SignedInfo');
+        $signature->appendChild($signedInfo);
+
+        //Agregamos el C14N utilñizado y el methodo de firmautilizado
+        $canonicalizationMethod = $xml->createElement('CanonicalizationMethod');
+        $canonicalizationMethod->setAttribute('Algorithm', 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315');
+        $signedInfo->appendChild($canonicalizationMethod);
+
+        $signatureMethod = $xml->createElement('SignatureMethod');
+        $signatureMethod->setAttribute('Algorithm', 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256');
+        $signedInfo->appendChild($signatureMethod);
 
         //Crear un objeto de referencia
         $reference = $xml->createElement('Reference');
-        $signature->appendChild($reference);
+        $signedInfo->appendChild($reference);
         $reference->setAttribute('URI', '#' . $json_de['DE'][0]['Id']);
 
         //Crear el objeto de transformación
@@ -205,18 +223,18 @@ class sifen{
         $transforms->appendChild($transform);
         $transform->setAttribute('Algorithm', 'http://www.w3.org/2000/09/xmldsig#enveloped-signature');
 
+        $transform2 = $xml->createElement('Transform');
+        $transform2->setAttribute('Algorithm', 'http://www.w3.org/2001/10/xml-exc-c14n#');
+        $transforms->appendChild($transform2);
+
         //Crear el objeto DigestMethod
         $digestMethod = $xml->createElement('DigestMethod');
         $reference->appendChild($digestMethod);
         $digestMethod->setAttribute('Algorithm', 'http://www.w3.org/2001/04/xmlenc#sha256');
 
-        //Calcular el valor de DigestValue (hash del contenido)
-        $digestValue = base64_encode(sha1($xml->C14N(), true));
+        //Agregamos a DigestValue
         $digestValueElement = $xml->createElement('DigestValue', $digestValue);
         $reference->appendChild($digestValueElement);
-
-        //Firmar el XML
-        openssl_sign($xml->C14N(), $signatureValue, $privateKey, OPENSSL_ALGO_SHA256);
 
         //Codificar la firma en base64 y establecerla como el valor de SignatureValue
         $signatureValueElement = $xml->createElement('SignatureValue', base64_encode($signatureValue));
@@ -264,7 +282,7 @@ class sifen{
         imagepng($image, $filename);
         imagedestroy($image);
 
-        //Guardar el XML firmado en un archivo con el Id
+        //Guardar el XML firmado en un archivo con el Id   
         $xml->save(__DIR__ . '/de/' . $json_de['DE'][0]['Id'] . '.xml');
         $xml = $xml->saveXML();
 
@@ -317,7 +335,30 @@ class sifen{
 
         //Configura el archivo XML para ser enviado
         $xmlData = file_get_contents($rutaArchivoXML);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $xmlData);
+
+        $dom = new DOMDocument();
+        $dom->loadXML($xmlData); // Carga tu XML en el objeto DOMDocument
+
+        // Obtener el contenido del elemento raíz (sin la declaración XML)
+        $contenidoXML = $dom->saveXML($dom->documentElement);
+
+        //Insertgamos el contenido del archivo XML dentro de la estructura SOAP, Pag. 36 del manual
+        $soapEnvelope = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+            <soap:Header/>
+            <soap:Body>
+                <rEnviDe xmlns="http://ekuatia.set.gov.py/sifen/xsd">
+                    <dId>2</dId>
+                    <xDE>
+                        ' . $contenidoXML . '
+                    </xDE>
+                </rEnviDe>
+            </soap:Body>
+        </soap:Envelope>';
+
+        //Solo para saber qué le enviamos a la SIFEN
+        //echo $soapEnvelope;
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $soapEnvelope);
 
         //Establece la cabecera Content-Type para el XML
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/xml'));
