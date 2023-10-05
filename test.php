@@ -169,5 +169,7 @@ $xml = new sifen();
 
 $xml->generar_xml($json, "LocoFactura23", "80130124_6.key", "80130124_6.pub");
 
-echo $xml->enviar_xml("pueblo", "80130124_6_send.key", "80130124_6.cer");
+echo $xml->enviar_xml("01800261658019002007094122023091018521597072", "80130124_6_send.key", "80130124_6.cer");
+
+//echo $xml->aravo();
 ?>

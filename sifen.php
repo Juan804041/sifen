@@ -16,6 +16,9 @@ class sifen{
         //Converts it into a PHP object
         $json_de = json_decode($json, true);
 
+        //Obtenemos la hora dessde los servidores de la SIFEN
+        $aravo = $this->aravo();
+
         //Generamos los items a ser de la factura
         $items = "";
         $cItems = 0; //Contador de la cantidad de items
@@ -59,7 +62,7 @@ class sifen{
             <dVerFor>{$json_de['dVerFor']}</dVerFor>
             <DE Id="{$json_de['DE'][0]['Id']}">
                 <dDVId>{$json_de['DE'][0]['dDVId']}</dDVId>
-                <dFecFirma>{$json_de['DE'][0]['dFecFirma']}</dFecFirma>
+                <dFecFirma>$aravo</dFecFirma>
                 <dSisFact>{$json_de['DE'][0]['dSisFact']}</dSisFact>
                 <gOpeDE>
                     <iTipEmi>{$json_de['DE'][0]['iTipEmi']}</iTipEmi>
@@ -450,8 +453,8 @@ class sifen{
         $unpack_response = unpack("N12", $response_packet);
         $timestamp = sprintf("%.0f", ($unpack_response[9] - 2208988800));
 
-        //Convierte el timestamp a una fecha y hora legible
-        $fecha_hora = date("Y-m-d H:i:s", $timestamp);
+        //Convierte el timestamp a una fecha y hora legible usable par ala SIFEN
+        $fecha_hora = date("Y-m-d\TH:i:s", $timestamp);
 
         if($crudo){
             return $timestamp;
