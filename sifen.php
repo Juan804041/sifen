@@ -6,23 +6,40 @@ class sifen{
      * @param string $json Recibe un string en formato json con todos los datos del archivo xml.
      * @param string $pass_llave_privada Contraseña de la llave privada.
      * @param string $name_llave_privada Nombre completo de la llave privada ubicado dentro de la carpeta llaves.
-     * @param string $name_llave_publica Nombre completo de la llave pública ubicado dentro de la carpeta llaves.
+     * @param string $name_certificado Nombre completo de certificado ubicado dentro de la carpeta llaves.
      * @param string $codigo_secreto Necesario para la generación del hash del QR y proporcionado por la SIFEN.
      * @param bool $produccion False en el caso de estar en fase de pruebas o test, true en caso de estar ya en producción.
      * @param bool $retornar True para retornar el xml, false si solo se quiere generar en la carpeta de el archivo pero no retornarlo, por defecto retorna.
-     * @return string Retorna el xml en un string.
+     * @return array $retorno Indice 0 es el XML, indice 1 es el número de la factura o Id
      */
-    function generar_xml(string $json, string $pass_llave_privada = "password",  string $name_llave_privada = "privada.key", string $name_llave_publica = "publica.pub", string $codigo_secreto = "ABCD0000000000000000000000000000", bool $produccion = false, bool $retornar = true){
+    function generar_xml(string $json, string $pass_llave_privada = "password",  string $name_llave_privada = "privada.key", string $name_certificado = "certificado.cer", string $codigo_secreto = "ABCD0000000000000000000000000000", bool $produccion = false, bool $retornar = true){
         //Converts it into a PHP object
         $json_de = json_decode($json, true);
 
-        //Obtenemos la hora dessde los servidores de la SIFEN
-        $aravo = $this->aravo();
+        //Obtenemos la hora dessde los servidores de la SIFEN siendo la misma dFecFirma
+        $dFecFirma = $this->aravo();
+
+        //Caculamos el valor de Id, para ello ---
+        //Obtenermos la fecha en formato AAAAMMDD
+        $dFeEmiDE = str_replace("T", " ",$json_de['DE'][0]['dFeEmiDE']);
+        $fecha_de_emision_de = new DateTime($dFeEmiDE);
+        $dFeEmiDE = $fecha_de_emision_de->format('Ymd');
+
+        //Generamos un código de seguridad aleatoria de 9 digitos
+        $dCodSeg = rand(000000001,999999999);
+
+        //Concatenamos todos los datos para la generación del codigo de seguridad
+        $codi_seguridad = $json_de['DE'][0]['iTiDE'] . $json_de['DE'][0]['dRucEm'] . $json_de['DE'][0]['dDVEmi'] . $json_de['DE'][0]['dEst'] . $json_de['DE'][0]['dPunExp'] . $json_de['DE'][0]['dNumDoc'] . $json_de['DE'][0]['iTipCont'] . $dFeEmiDE . $json_de['DE'][0]['iTipEmi'] . $json_de['DE'][0]['dCodSeg'] . $json_de['DE'][0]['dDVId'];
+
+        $Id = $codi_seguridad;
 
         //Generamos los items a ser de la factura
         $items = "";
         $cItems = 0; //Contador de la cantidad de items
         foreach($json_de['items'] as $item){
+            //Variable para el calculo de los totales
+            //POR HACER
+
             $cItems ++; //Sumar 1 por cada item
             $items .= <<<EOF
             <gCamItem>
@@ -52,22 +69,22 @@ class sifen{
                     <dLiqIVAItem>{$item['dLiqIVAItem']}</dLiqIVAItem>
                 </gCamIVA>
             </gCamItem>
-        EOF;
+            EOF;
         }
-
 
         //Reemplazamos los datos dentro del modelo XML con los datos enviados
         $xml_crudo = <<<EOF
-        <rDE sxmlns="http://ekuatia.set.gov.py/sifen/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ekuatia.set.gov.py/sifen/xsd/siRecepDE_v150.xsd">
+        <rDE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ekuatia.set.gov.py/sifen/xsd/siRecepDE_v150.xsd">
             <dVerFor>{$json_de['dVerFor']}</dVerFor>
-            <DE Id="{$json_de['DE'][0]['Id']}">
+            <DE Id="$Id">
                 <dDVId>{$json_de['DE'][0]['dDVId']}</dDVId>
-                <dFecFirma>$aravo</dFecFirma>
+                <dFecFirma>$dFecFirma</dFecFirma>
                 <dSisFact>{$json_de['DE'][0]['dSisFact']}</dSisFact>
                 <gOpeDE>
-                    <iTipEmi>{$json_de['DE'][0]['iTipEmi']}</iTipEmi>
+                    <iTipEmi>1{$json_de['DE'][0]['iTipEmi']}</iTipEmi>
                     <dDesTipEmi>{$json_de['DE'][0]['dDesTipEmi']}</dDesTipEmi>
                     <dCodSeg>{$json_de['DE'][0]['dCodSeg']}</dCodSeg>
+                    <dInfoEmi>{$json_de['DE'][0]['dInfoEmi']}</dInfoEmi>
                 </gOpeDE>
                 <gTimb>
                     <iTiDE>{$json_de['DE'][0]['iTiDE']}</iTiDE>
@@ -94,7 +111,6 @@ class sifen{
                         <dDVEmi>{$json_de['DE'][0]['dDVEmi']}</dDVEmi>
                         <iTipCont>{$json_de['DE'][0]['iTipCont']}</iTipCont>
                         <dNomEmi>{$json_de['DE'][0]['dNomEmi']}</dNomEmi>
-                        <dNomFanEmi>{$json_de['DE'][0]['dNomFanEmi']}</dNomFanEmi>
                         <dDirEmi>{$json_de['DE'][0]['dDirEmi']}</dDirEmi>
                         <dNumCas>{$json_de['DE'][0]['dNumCas']}</dNumCas>
                         <cDepEmi>{$json_de['DE'][0]['cDepEmi']}</cDepEmi>
@@ -118,7 +134,6 @@ class sifen{
                         <iTiContRec>{$json_de['DE'][0]['iTiContRec']}</iTiContRec>
                         <dRucRec>{$json_de['DE'][0]['dRucRec']}</dRucRec>
                         <dDVRec>{$json_de['DE'][0]['dDVRec']}</dDVRec>
-                        <dNumIDRec>{$json_de['DE'][0]['dNumIDRec']}</dNumIDRec>
                         <dNomRec>{$json_de['DE'][0]['dNomRec']}</dNomRec>
                     </gDatRec>
                 </gDatGralOpe>
@@ -146,8 +161,6 @@ class sifen{
                     $items
                 </gDtipDE>
                 <gTotSub>
-                    <dSubExe>{$json_de['gTotSub'][0]['dSubExe']}</dSubExe>
-                    <dSubExo>{$json_de['gTotSub'][0]['dSubExo']}</dSubExo>
                     <dSub5>{$json_de['gTotSub'][0]['dSub5']}</dSub5>
                     <dSub10>{$json_de['gTotSub'][0]['dSub10']}</dSub10>
                     <dTotOpe>{$json_de['gTotSub'][0]['dTotOpe']}</dTotOpe>
@@ -175,11 +188,11 @@ class sifen{
         EOF;
 
         //Comenzamos la parte de la firma
-        //Leer el contenido de la clave pública desde un archivo .PUB
-        $publicKeyPUB = file_get_contents(__DIR__ . '/llaves/' . $name_llave_publica);
+        //Leer el contenido del certificado poara agregar en X509
+        $certificado = file_get_contents(__DIR__ . '/llaves/' . $name_certificado);
 
         //Elimina las etiquetas BEGIN y END y otros caracteres no deseados
-        $publicKeyPUB = str_replace(array('-----BEGIN PUBLIC KEY-----', '-----END PUBLIC KEY-----', "\n", "\r", "\r\n"), '', $publicKeyPUB);
+        $certificado = str_replace(array('-----BEGIN CERTIFICATE-----', '-----END CERTIFICATE-----'), '', $certificado);
 
         //Cargar la clave privada desde un archivo PEM
         $keyPass = $pass_llave_privada;
@@ -205,7 +218,7 @@ class sifen{
         $signedInfo = $xml->createElement('SignedInfo');
         $signature->appendChild($signedInfo);
 
-        //Agregamos el C14N utilñizado y el methodo de firmautilizado
+        //Agregamos el C14N utilizado y el metodo de firma utilizado
         $canonicalizationMethod = $xml->createElement('CanonicalizationMethod');
         $canonicalizationMethod->setAttribute('Algorithm', 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315');
         $signedInfo->appendChild($canonicalizationMethod);
@@ -217,7 +230,7 @@ class sifen{
         //Crear un objeto de referencia
         $reference = $xml->createElement('Reference');
         $signedInfo->appendChild($reference);
-        $reference->setAttribute('URI', '#' . $json_de['DE'][0]['Id']);
+        $reference->setAttribute('URI', '#' . $Id);
 
         //Crear el objeto de transformación
         $transforms = $xml->createElement('Transforms');
@@ -252,7 +265,7 @@ class sifen{
         $keyInfo->appendChild($x509Data);
 
         //Crear el objeto X509Certificate y establecer el valor del certificado
-        $x509Certificate = $xml->createElement('X509Certificate', $publicKeyPUB);
+        $x509Certificate = $xml->createElement('X509Certificate', $certificado);
         $x509Data->appendChild($x509Certificate);
 
         //Crear el objeto para el QR
@@ -260,7 +273,7 @@ class sifen{
         $root->appendChild($gCamFuFD);
 
         //Creación del HASH del QR
-        $concatenado = "nVersion=150&Id=" . $json_de['DE'][0]['Id'] . "&dFeEmiDE=" . bin2hex($json_de['DE'][0]['dFeEmiDE']) . "&dRucRec=" . $json_de['DE'][0]['dRucRec'] . "&dTotGralOpe=" . $json_de['gTotSub'][0]['dTotGralOpe'] . "&dTotIVA=" . $json_de['gTotSub'][0]['dTotIVA'] . "&cItems=" . $cItems . "&DigestValue=" . bin2hex($digestValue) . "&IdCSC=0001";
+        $concatenado = "nVersion=150&Id=" . $Id . "&dFeEmiDE=" . bin2hex($json_de['DE'][0]['dFeEmiDE']) . "&dRucRec=" . $json_de['DE'][0]['dRucRec'] . "&dTotGralOpe=" . $json_de['gTotSub'][0]['dTotGralOpe'] . "&dTotIVA=" . $json_de['gTotSub'][0]['dTotIVA'] . "&cItems=" . $cItems . "&DigestValue=" . bin2hex($digestValue) . "&IdCSC=0001";
         $concat_mas_codigo = $concatenado . $codigo_secreto;
         $hash_qr = hash('sha256', $concat_mas_codigo);
 
@@ -272,7 +285,7 @@ class sifen{
         }
         
         $enlace_qr_cambio = str_replace("&","&amp;",$enlaceQR); //Antes de la inserción de la URL en el XML, se deberá reemplazar los símbolos “&” por su equivalente en código html, el cual es “&amp;”.
-        $dCarQR = $xml->createElement('dCarQR', $enlace_qr_cambio); 
+        $dCarQR = $xml->createElement('dCarQR', $enlace_qr_cambio);
         $gCamFuFD->appendChild($dCarQR);
 
         //Generamos el QR para poder usar en la impresión
@@ -281,17 +294,23 @@ class sifen{
         $generator = new barcode_generator();
         /* Create bitmap image and write to file. */
         $image = $generator->render_image("qr", $enlaceQR,"");
-        $filename = __DIR__ . '/de/' . $json_de['DE'][0]['Id'] . '.png';
+        $filename = __DIR__ . '/de/' . $Id . '.png';
         imagepng($image, $filename);
         imagedestroy($image);
 
         //Guardar el XML firmado en un archivo con el Id   
-        $xml->save(__DIR__ . '/de/' . $json_de['DE'][0]['Id'] . '.xml');
+        $xml->save(__DIR__ . '/de/' . $Id . '.xml');
         $xml = $xml->saveXML();
+
+        //Creamos un array de retorno
+        $retorno = array(
+            $xml,
+            $Id
+        );
 
         if($retornar){
             //Mostramos el nuevo archivo XML
-            return $xml;
+            return $retorno;
         }
     }
 
@@ -360,6 +379,11 @@ class sifen{
 
         //Solo para saber qué le enviamos a la SIFEN
         //echo $soapEnvelope;
+
+        //DomSOAP, canonizamos antes de enviar el XML
+        $domSOAP = new DOMDocument();
+        $domSOAP->loadXML($soapEnvelope);
+        //$soapEnvelope = $domSOAP->C14N();
 
         curl_setopt($ch, CURLOPT_POSTFIELDS, $soapEnvelope);
 

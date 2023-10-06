@@ -1,0 +1,5 @@
+Puedes validar tu XML ingresando al siguiente enlace para alzar tanto el XML generado como el archivo XSD de la SIFEN
+https://www.freeformatter.com/xml-validator-xsd.html
+
+Archivo XSD de la SIFEN
+https://www.set.gov.py/web/e-kuatia/documentacion-tecnica

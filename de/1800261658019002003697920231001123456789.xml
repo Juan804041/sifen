@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <rDE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ekuatia.set.gov.py/sifen/xsd/siRecepDE_v150.xsd">
     <dVerFor>150</dVerFor>
-    <DE Id="01800261658019002007094122023091018521597072">
-        <dDVId>1</dDVId>
-        <dFecFirma>2023-10-06T14:17:46</dFecFirma>
+    <DE Id="1800261658019002003697920231001123456789">
+        <dDVId>9</dDVId>
+        <dFecFirma>2023-10-06T15:01:41</dFecFirma>
         <dSisFact>5</dSisFact>
         <gOpeDE>
             <iTipEmi>11</iTipEmi>
@@ -187,7 +187,7 @@
             <dTBasGraIVA>74319</dTBasGraIVA>
         </gTotSub>
     </DE>
-<Signature><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#01800261658019002007094122023091018521597072"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>NmYzYmNiYTFjOGU5MGU0NGM4NmEzMmYzZDdlNTI2NWViZjU2MDVmZTA0NjE4MWU3OTMyOTUyMTc5YTQ5N2QwMA==</DigestValue></Reference></SignedInfo><SignatureValue>Jn7PESb/f7kvK5k6P2tmMa9KwjDpaiGDP0KruWgkbEcKnOUJPFpmWimC1uOorErdZMjeOaldm6+K1XuNNd6oRlkEHV8tZvVryOAWhIjwrANdCCiMXlqFMefJMIM6UJDyAdm3wE1scrb0S6XcUpRCaFtq4F/xvPSsP3kht6Odukzg3c3LGgIW1KyvIhMHfYkmZcAPIOKviAnnnSMlmKQnetWhXQzxUnYq24iTQe9zEtpAHNx3U1cTgV74mdEZHSM8dnjslGeoq8Va4hgZXYPRk+nIr1FZpkMhDaDYkZvB45SK6MH7py4fly/WdlUG81rVmtFmv66XuZKQeOYpRbkutA==</SignatureValue><KeyInfo><X509Data><X509Certificate>
+<Signature><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#1800261658019002003697920231001123456789"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>YmFhNmZlMjg1ZTI3ZDg0NTJhNDlkMDQwNWMxOGVlNGRiMGE3ZDY4MTFlYTVmMWZjYTJhZjNlM2QzNzIxN2M2ZA==</DigestValue></Reference></SignedInfo><SignatureValue>U1UWmw26QOeOK6RUg9FuOng+K6WLU0tjsHN3T8knME6H3GgBTCVwnaVeo8ax/XbmBX7BnR8ScbIPnycI+bm2qH8kDjcdRCBLJGl5kh+nXLd8zxxOX46vz04fxlHfQqqYOMJrm5rz55giyutpzMWRQeNsigPB1AQeRwSp4HAxwkEkvkIn6nmTkwk/nZx90IAikEqsPXYQTgszmZNbLXVVl7Scl+/NrWdQXCwKbwM0SQ5+cXh/63ZjdqUrfq+8CaZM7gGR5kUpQ/yNTDN9wkPw2oSqN0HoyU9tKxzXXe8IQzvRW/uhXNF7oKn5VAG/S+AFOTaVuoXpjeUvP5w8yaB6iQ==</SignatureValue><KeyInfo><X509Data><X509Certificate>
 MIIIzjCCBragAwIBAgIQIA+0UxOHz4BkY6RXyoeZRTANBgkqhkiG9w0BAQsFADCB
 gTEWMBQGA1UEBRMNUlVDODAwODAwOTktMDERMA8GA1UEAxMIVklUIFMuQS4xODA2
 BgNVBAsML1ByZXN0YWRvciBDdWFsaWZpY2FkbyBkZSBTZXJ2aWNpb3MgZGUgQ29u
@@ -236,4 +236,4 @@ Sq9Lpt6PjLl+hYdBi7FpBZQ9Zi9ErRHV91/TCIHBtuLF+c+iu4HAuEpN3XNDjF0d
 uTiYytmMV6PchIVMg709yBpVM4ukFVVkbAkhKyRdpFHQgB6wBzcmEdLgje2DQnef
 FOvQmL3dT4dU89WPWbNcdeowbj9G+ge8wSZhHtwQsTTevlp80akorv2HbQ2QuzqN
 ty4=
-</X509Certificate></X509Data></KeyInfo></Signature><gCamFuFD><dCarQR>https://www.ekuatia.set.gov.py/consultas-test/qr?nVersion=150&amp;Id=01800261658019002007094122023091018521597072&amp;dFeEmiDE=323032332d31302d30315430303a30303a3030&amp;dRucRec=2278132&amp;dTotGralOpe=81750&amp;dTotIVA=7431&amp;cItems=3&amp;DigestValue=4e6d597a596d4e695954466a4f4755354d4755304e474d344e6d457a4d6d597a5a44646c4e5449324e5756695a6a55324d44566d5a5441304e6a45344d5755334f544d794f5455794d546335595451354e3251774d413d3d&amp;IdCSC=0001&amp;cHashQR=a65a67ba664310e7069b2d35a377ec8c2c5f117f06612beac1d88bd6d7c2057a</dCarQR></gCamFuFD></rDE>
+</X509Certificate></X509Data></KeyInfo></Signature><gCamFuFD><dCarQR>https://www.ekuatia.set.gov.py/consultas-test/qr?nVersion=150&amp;Id=1800261658019002003697920231001123456789&amp;dFeEmiDE=323032332d31302d30315430303a30303a3030&amp;dRucRec=2278132&amp;dTotGralOpe=81750&amp;dTotIVA=7431&amp;cItems=3&amp;DigestValue=596d46684e6d5a6c4d6a67315a5449335a4467304e544a684e446c6b4d4451774e574d784f47566c4e4752694d4745335a4459344d54466c5954566d4d575a6a59544a685a6a4e6c4d32517a4e7a49784e324d325a413d3d&amp;IdCSC=0001&amp;cHashQR=4e75a8900fb6b9c7b98ee19b61047bcfb2b744274652db718c6ab295d65a43aa</dCarQR></gCamFuFD></rDE>

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <rDE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ekuatia.set.gov.py/sifen/xsd/siRecepDE_v150.xsd">
     <dVerFor>150</dVerFor>
-    <DE Id="01800261658019002007094122023091018521597072">
-        <dDVId>1</dDVId>
-        <dFecFirma>2023-10-06T14:17:46</dFecFirma>
+    <DE Id="180026165801900200369791202310011123456789">
+        <dDVId>9</dDVId>
+        <dFecFirma>2023-10-06T15:03:55</dFecFirma>
         <dSisFact>5</dSisFact>
         <gOpeDE>
             <iTipEmi>11</iTipEmi>
@@ -34,7 +34,7 @@
             <gEmis>
                 <dRucEm>80026165</dRucEm>
                 <dDVEmi>8</dDVEmi>
-                <iTipCont>2</iTipCont>
+                <iTipCont>1</iTipCont>
                 <dNomEmi>Supermercados Pueblo S.A</dNomEmi>
                 <dDirEmi>Avda Artigas</dDirEmi>
                 <dNumCas>0</dNumCas>
@@ -187,7 +187,7 @@
             <dTBasGraIVA>74319</dTBasGraIVA>
         </gTotSub>
     </DE>
-<Signature><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#01800261658019002007094122023091018521597072"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>NmYzYmNiYTFjOGU5MGU0NGM4NmEzMmYzZDdlNTI2NWViZjU2MDVmZTA0NjE4MWU3OTMyOTUyMTc5YTQ5N2QwMA==</DigestValue></Reference></SignedInfo><SignatureValue>Jn7PESb/f7kvK5k6P2tmMa9KwjDpaiGDP0KruWgkbEcKnOUJPFpmWimC1uOorErdZMjeOaldm6+K1XuNNd6oRlkEHV8tZvVryOAWhIjwrANdCCiMXlqFMefJMIM6UJDyAdm3wE1scrb0S6XcUpRCaFtq4F/xvPSsP3kht6Odukzg3c3LGgIW1KyvIhMHfYkmZcAPIOKviAnnnSMlmKQnetWhXQzxUnYq24iTQe9zEtpAHNx3U1cTgV74mdEZHSM8dnjslGeoq8Va4hgZXYPRk+nIr1FZpkMhDaDYkZvB45SK6MH7py4fly/WdlUG81rVmtFmv66XuZKQeOYpRbkutA==</SignatureValue><KeyInfo><X509Data><X509Certificate>
+<Signature><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#180026165801900200369791202310011123456789"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>M2E4YjY2NGUwMGQ4MWIxZjcyMDQ2ZTAyZmUxNzQ0YzFmNWQ0ODExNzIzZjE0YzY0MDIxYmQyNTk2MWUxMTY2Yg==</DigestValue></Reference></SignedInfo><SignatureValue>aD2FrdgWZi62gys76x/EjsRgKyRTuBOraL+Oh5Z/Opkr1iB7lnIkn2WPISitu9zbfjz/B8/gRSy2ZZXMPn5/vErDBOObz0rs7gIgaaNMaqo3hdOIHpCuEzKhAHRAQ3lxwzUs2JFizurdD4D6pjgw9ljp/vIoOYJMHhScYjG3OM5AkTKSwsx0IxSIGWx7+/rT99LWo+tkiP5+23JzWTSmviUgxLYewR5kcHenwQd7l6yy7My+pV9qbl3u8L2IVnDx/Hk5LAFtqnFxH4BJqvD5o642fmKQY5QHt5MDmBaqGU8gvPFmUIIo2BZbV4aiLxxh6z5JE1r7S+Dj0O/V8bHvGA==</SignatureValue><KeyInfo><X509Data><X509Certificate>
 MIIIzjCCBragAwIBAgIQIA+0UxOHz4BkY6RXyoeZRTANBgkqhkiG9w0BAQsFADCB
 gTEWMBQGA1UEBRMNUlVDODAwODAwOTktMDERMA8GA1UEAxMIVklUIFMuQS4xODA2
 BgNVBAsML1ByZXN0YWRvciBDdWFsaWZpY2FkbyBkZSBTZXJ2aWNpb3MgZGUgQ29u
@@ -236,4 +236,4 @@ Sq9Lpt6PjLl+hYdBi7FpBZQ9Zi9ErRHV91/TCIHBtuLF+c+iu4HAuEpN3XNDjF0d
 uTiYytmMV6PchIVMg709yBpVM4ukFVVkbAkhKyRdpFHQgB6wBzcmEdLgje2DQnef
 FOvQmL3dT4dU89WPWbNcdeowbj9G+ge8wSZhHtwQsTTevlp80akorv2HbQ2QuzqN
 ty4=
-</X509Certificate></X509Data></KeyInfo></Signature><gCamFuFD><dCarQR>https://www.ekuatia.set.gov.py/consultas-test/qr?nVersion=150&amp;Id=01800261658019002007094122023091018521597072&amp;dFeEmiDE=323032332d31302d30315430303a30303a3030&amp;dRucRec=2278132&amp;dTotGralOpe=81750&amp;dTotIVA=7431&amp;cItems=3&amp;DigestValue=4e6d597a596d4e695954466a4f4755354d4755304e474d344e6d457a4d6d597a5a44646c4e5449324e5756695a6a55324d44566d5a5441304e6a45344d5755334f544d794f5455794d546335595451354e3251774d413d3d&amp;IdCSC=0001&amp;cHashQR=a65a67ba664310e7069b2d35a377ec8c2c5f117f06612beac1d88bd6d7c2057a</dCarQR></gCamFuFD></rDE>
+</X509Certificate></X509Data></KeyInfo></Signature><gCamFuFD><dCarQR>https://www.ekuatia.set.gov.py/consultas-test/qr?nVersion=150&amp;Id=180026165801900200369791202310011123456789&amp;dFeEmiDE=323032332d31302d30315430303a30303a3030&amp;dRucRec=2278132&amp;dTotGralOpe=81750&amp;dTotIVA=7431&amp;cItems=3&amp;DigestValue=4d324534596a59324e4755774d4751344d5749785a6a63794d4451325a5441795a6d55784e7a5130597a466d4e5751304f4445784e7a497a5a6a4530597a59304d444978596d51794e546b324d5755784d54593259673d3d&amp;IdCSC=0001&amp;cHashQR=f4e53caec3e312852eefb56b7a1f1e7ebf0c03531519a94793d3718203d8c83d</dCarQR></gCamFuFD></rDE>

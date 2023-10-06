@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <xs:import namespace="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="xsi.xsd"/>
+    <xs:element name="rDE">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="dVerFor"/>
+                <xs:element ref="dIDE"/>
+                <xs:element ref="gCiODE"/>
+                <xs:element ref="gDTim"/>
+                <xs:element ref="gCamOC"/>
+                <xs:element ref="gDtipDe"/>
+                <xs:element ref="gTotSub"/>
+                <xs:element ref="gInfPed"/>
+                <xs:element ref="gCamFuFD"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dVerFor" type="xs:decimal"/>
+    <xs:element name="dIDE" type="xs:string"/>
+    <xs:element name="gCiODE">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="iAmbDE"/>
+                <xs:element ref="dDesAmDE"/>
+                <xs:element ref="iModVal"/>
+                <xs:element ref="dDesModVal"/>
+                <xs:element ref="iValPos"/>
+                <xs:element ref="iTipEmi"/>
+                <xs:element ref="dDesTipEmi"/>
+                <xs:element ref="iCoSe"/>
+                <xs:element ref="iIndPres"/>
+                <xs:element ref="dDesIndPres"/>
+                <xs:element ref="iTipTra"/>
+                <xs:element ref="dDesTiTran"/>
+                <xs:element ref="dInfoEmi"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="iAmbDE" type="xs:integer"/>
+    <xs:element name="dDesAmDE" type="xs:string"/>
+    <xs:element name="iModVal" type="xs:integer"/>
+    <xs:element name="dDesModVal" type="xs:string"/>
+    <xs:element name="iValPos" type="xs:string"/>
+    <xs:element name="iTipEmi" type="xs:integer"/>
+    <xs:element name="dDesTipEmi" type="xs:string"/>
+    <xs:element name="iCoSe" type="xs:integer"/>
+    <xs:element name="iIndPres" type="xs:integer"/>
+    <xs:element name="dDesIndPres" type="xs:string"/>
+    <xs:element name="iTipTra" type="xs:integer"/>
+    <xs:element name="dDesTiTran" type="xs:string"/>
+    <xs:element name="dInfoEmi" type="xs:string"/>
+    <xs:element name="gDTim">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="dNumTim"/>
+                <xs:element ref="iTiDE"/>
+                <xs:element ref="dDesTiDE"/>
+                <xs:element ref="dEst"/>
+                <xs:element ref="dPunExp"/>
+                <xs:element ref="dNumDoc"/>
+                <xs:element ref="dFeIniT"/>
+                <xs:element ref="dFeFinT"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dNumTim" type="xs:integer"/>
+    <xs:element name="iTiDE" type="xs:integer"/>
+    <xs:element name="dDesTiDE" type="xs:string"/>
+    <xs:element name="dEst" type="xs:integer"/>
+    <xs:element name="dPunExp" type="xs:integer"/>
+    <xs:element name="dNumDoc" type="xs:integer"/>
+    <xs:element name="dFeIniT" type="xs:date"/>
+    <xs:element name="dFeFinT" type="xs:date"/>
+    <xs:element name="gCamOC">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="gDaGOC"/>
+                <xs:element ref="gEmis"/>
+                <xs:element ref="gDatRec"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="gDaGOC">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="fEmiDE"/>
+                <xs:element ref="fEmiCIC"/>
+                <xs:element ref="iTimp"/>
+                <xs:element ref="dDesTimp"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="fEmiDE" type="xs:date"/>
+    <xs:element name="fEmiCIC" type="xs:date"/>
+    <xs:element name="iTimp" type="xs:integer"/>
+    <xs:element name="dDesTimp" type="xs:string"/>
+    <xs:element name="gEmis">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="dRucEm"/>
+                <xs:element ref="dVerEmi"/>
+                <xs:element ref="iTipCont"/>
+                <xs:element ref="dDesCont"/>
+                <xs:element ref="cTipReg"/>
+                <xs:element ref="dDesTreg"/>
+                <xs:element ref="dNomEmi"/>
+                <xs:element ref="dNomFan"/>
+                <xs:element ref="dDirEmi"/>
+                <xs:element ref="dNumCas"/>
+                <xs:element ref="dCompDir1"/>
+                <xs:element ref="dCompDir2"/>
+                <xs:element ref="cLocEmi"/>
+                <xs:element ref="dDesLocEmi"/>
+                <xs:element ref="cDisEmi"/>
+                <xs:element ref="dDesDisEmi"/>
+                <xs:element ref="cDepEmi"/>
+                <xs:element ref="dDesDepEmi"/>
+                <xs:element ref="dTelEmi"/>
+                <xs:element ref="dEmailE"/>
+                <xs:element ref="dDenSuc"/>
+                <xs:element ref="cCactEemi"/>
+                <xs:element ref="dDactEemi"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dRucEm" type="xs:integer"/>
+    <xs:element name="dVerEmi" type="xs:integer"/>
+    <xs:element name="iTipCont" type="xs:integer"/>
+    <xs:element name="dDesCont" type="xs:string"/>
+    <xs:element name="cTipReg" type="xs:integer"/>
+    <xs:element name="dDesTreg" type="xs:string"/>
+    <xs:element name="dNomEmi" type="xs:string"/>
+    <xs:element name="dDirEmi" type="xs:string"/>
+    <xs:element name="dNumCas" type="xs:integer"/>
+    <xs:element name="dCompDir1" type="xs:string"/>
+    <xs:element name="dCompDir2" type="xs:string"/>
+    <xs:element name="cLocEmi" type="xs:integer"/>
+    <xs:element name="dDesLocEmi" type="xs:string"/>
+    <xs:element name="cDisEmi" type="xs:integer"/>
+    <xs:element name="dDesDisEmi" type="xs:string"/>
+    <xs:element name="cDepEmi" type="xs:integer"/>
+    <xs:element name="dDesDepEmi" type="xs:string"/>
+    <xs:element name="dTelEmi" type="xs:integer"/>
+    <xs:element name="dEmailE" type="xs:string"/>
+    <xs:element name="dDenSuc" type="xs:string"/>
+    <xs:element name="cCactEemi" type="xs:integer"/>
+    <xs:element name="dDactEemi" type="xs:integer"/>
+    <xs:element name="gDatRec">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="iNatRec"/>
+                <xs:element ref="dDesNatRe"/>
+                <xs:element ref="iTiOpe"/>
+                <xs:element ref="dDesTiope"/>
+                <xs:element ref="cPaisRec"/>
+                <xs:element ref="dDesPaiRe"/>
+                <xs:element ref="dRucRec"/>
+                <xs:element ref="dVerRec"/>
+                <xs:element ref="iTiContRec"/>
+                <xs:element ref="dDtiContRec"/>
+                <xs:element ref="iTipDRec"/>
+                <xs:element ref="dDtipDRec"/>
+                <xs:element ref="dIdenRec"/>
+                <xs:element ref="dNomRec"/>
+                <xs:element ref="dNomFan"/>
+                <xs:element ref="dTelRec"/>
+                <xs:element ref="dEmailRec"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="iNatRec" type="xs:integer"/>
+    <xs:element name="dDesNatRe" type="xs:string"/>
+    <xs:element name="iTiOpe" type="xs:integer"/>
+    <xs:element name="dDesTiope" type="xs:string"/>
+    <xs:element name="cPaisRec" type="xs:string"/>
+    <xs:element name="dDesPaiRe" type="xs:string"/>
+    <xs:element name="dRucRec" type="xs:integer"/>
+    <xs:element name="dVerRec" type="xs:integer"/>
+    <xs:element name="iTiContRec" type="xs:integer"/>
+    <xs:element name="dDtiContRec" type="xs:string"/>
+    <xs:element name="iTipDRec" type="xs:integer"/>
+    <xs:element name="dIdenRec" type="xs:integer"/>
+    <xs:element name="dNomRec" type="xs:string"/>
+    <xs:element name="dTelRec" type="xs:integer"/>
+    <xs:element name="dEmailRec" type="xs:string"/>
+    <xs:element name="gDtipDe">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="gDatMon"/>
+                <xs:element ref="gCamFE"/>
+                <xs:element ref="gCdesIOp"/>
+                <xs:element ref="gCamComEsp"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="gDatMon">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="iMonOpe"/>
+                <xs:element ref="dDmonOpe"/>
+                <xs:element ref="dTipCam"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="iMonOpe" type="xs:integer"/>
+    <xs:element name="dDmonOpe" type="xs:string"/>
+    <xs:element name="dTipCam">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="gCamFE">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="iCondOpe"/>
+                <xs:element ref="dDtipDRec"/>
+                <xs:element ref="gCdfpoc"/>
+                <xs:element ref="gCdOpCre"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="iCondOpe" type="xs:integer"/>
+    <xs:element name="gCdfpoc">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="iTiPago"/>
+                <xs:element ref="dDesTPag"/>
+                <xs:element ref="dMonTiPag"/>
+                <xs:element ref="gCamTarCD"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="iTiPago" type="xs:integer"/>
+    <xs:element name="dDesTPag" type="xs:string"/>
+    <xs:element name="dMonTiPag" type="xs:decimal"/>
+    <xs:element name="gCamTarCD">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="iDenTarj"/>
+                <xs:element ref="dDesTarj"/>
+                <xs:element ref="dRUCproTar"/>
+                <xs:element ref="dDVerRprT"/>
+                <xs:element ref="iForProPa"/>
+                <xs:element ref="dDForProPa"/>
+                <xs:element ref="dNunapOpe"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="iDenTarj">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dDesTarj">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dRUCproTar">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dDVerRprT">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="iForProPa">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dDForProPa">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dNunapOpe">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="gCdOpCre">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="dNcuotas"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dNcuotas" type="xs:integer"/>
+    <xs:element name="gCdesIOp">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="dNuSec"/>
+                <xs:element ref="dCodInt"/>
+                <xs:element ref="dParAranc"/>
+                <xs:element ref="dNomCoMerc"/>
+                <xs:element ref="dCodDncp"/>
+                <xs:element ref="dCodGtin"/>
+                <xs:element ref="dCodGtinPq"/>
+                <xs:element ref="dDesProSer"/>
+                <xs:element ref="cUnMed"/>
+                <xs:element ref="dDuMed"/>
+                <xs:element ref="dCantProSer"/>
+                <xs:element ref="dIintItem"/>
+                <xs:element ref="gCvalorItem"/>
+                <xs:element ref="gCIVAopeVta"/>
+                <xs:element ref="gCISCope"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dNuSec" type="xs:integer"/>
+    <xs:element name="dCodInt" type="xs:integer"/>
+    <xs:element name="dParAranc">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dNomCoMerc">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dCodDncp">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dCodGtin">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dCodGtinPq">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dDesProSer" type="xs:string"/>
+    <xs:element name="cUnMed" type="xs:integer"/>
+    <xs:element name="dDuMed" type="xs:string"/>
+    <xs:element name="dCantProSer" type="xs:integer"/>
+    <xs:element name="dIintItem" type="xs:string"/>
+    <xs:element name="gCvalorItem">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="dPUniProSer"/>
+                <xs:element ref="dDescPUni"/>
+                <xs:element ref="dVtotVtait"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dPUniProSer" type="xs:integer"/>
+    <xs:element name="dDescPUni" type="xs:integer"/>
+    <xs:element name="dVtotVtait" type="xs:integer"/>
+    <xs:element name="gCIVAopeVta">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="iAfecIVA"/>
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element ref="cCodAfecIVA"/>
+                    <xs:element ref="dDesAfecIVA"/>
+                    <xs:element ref="dTasaIVA"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="iAfecIVA" type="xs:integer"/>
+    <xs:element name="cCodAfecIVA" type="xs:integer"/>
+    <xs:element name="dDesAfecIVA" type="xs:string"/>
+    <xs:element name="dTasaIVA" type="xs:string"/>
+    <xs:element name="gCISCope">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="cCatISC"/>
+                <xs:element ref="dDesCatISC"/>
+                <xs:element ref="cTasaISC"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="cCatISC">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dDesCatISC">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="cTasaISC">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="gCamComEsp">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="gRasMerc"/>
+                <xs:element ref="gDetVehN"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="gRasMerc">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="dNumLote"/>
+                <xs:element ref="fVenc"/>
+                <xs:element ref="dCntProd"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dNumLote" type="xs:integer"/>
+    <xs:element name="fVenc" type="xs:date"/>
+    <xs:element name="dCntProd" type="xs:integer"/>
+    <xs:element name="gDetVehN">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="iTipOpVN"/>
+                <xs:element ref="dDesTipOpVN"/>
+                <xs:element ref="dChasis"/>
+                <xs:element ref="dColorCod"/>
+                <xs:element ref="dDesColor"/>
+                <xs:element ref="dPotVeh"/>
+                <xs:element ref="dCapMot"/>
+                <xs:element ref="dPNet"/>
+                <xs:element ref="dPBruto"/>
+                <xs:element ref="dNSerie"/>
+                <xs:element ref="iTipCom"/>
+                <xs:element ref="dDesTipCom"/>
+                <xs:element ref="dNroMotor"/>
+                <xs:element ref="dCapTracc"/>
+                <xs:element ref="dDisEj"/>
+                <xs:element ref="dAnoMod"/>
+                <xs:element ref="dAnoFab"/>
+                <xs:element ref="iTP"/>
+                <xs:element ref="dDesTP"/>
+                <xs:element ref="cTipVeh"/>
+                <xs:element ref="cEspVeh"/>
+                <xs:element ref="iCondVeh"/>
+                <xs:element ref="dDesCondVeh"/>
+                <xs:element ref="dLotac"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="iTipOpVN">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dDesTipOpVN">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dChasis">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dColorCod">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dDesColor">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dPotVeh">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dCapMot">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dPNet">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dPBruto">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dNSerie">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="iTipCom">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dDesTipCom">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dNroMotor">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dCapTracc">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dDisEj">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dAnoMod">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dAnoFab">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="iTP">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dDesTP">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="cTipVeh">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="cEspVeh">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="iCondVeh">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dDesCondVeh">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="dLotac">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="gTotSub">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="dSubVExe"/>
+                <xs:element ref="dSubVExo"/>
+                <xs:element ref="sSubVIva5"/>
+                <xs:element ref="sSubVIva10"/>
+                <xs:element ref="sSubVISC"/>
+                <xs:element ref="dTotPag"/>
+                <xs:element ref="dTotDesc"/>
+                <xs:element ref="dCRed"/>
+                <xs:element ref="dTotPDR"/>
+                <xs:element ref="dLIva5"/>
+                <xs:element ref="dLiva10"/>
+                <xs:element ref="dLtotIva"/>
+                <xs:element ref="dBaseImp5"/>
+                <xs:element ref="dBaseImp10"/>
+                <xs:element ref="dTbasImpIVA"/>
+                <xs:element ref="dLtotIsc"/>
+                <xs:element ref="dBaseImpISC"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dSubVExe" type="xs:decimal"/>
+    <xs:element name="dSubVExo" type="xs:decimal"/>
+    <xs:element name="sSubVIva5" type="xs:decimal"/>
+    <xs:element name="sSubVIva10" type="xs:decimal"/>
+    <xs:element name="sSubVISC" type="xs:decimal"/>
+    <xs:element name="dTotPag" type="xs:decimal"/>
+    <xs:element name="dTotDesc" type="xs:decimal"/>
+    <xs:element name="dCRed" type="xs:decimal"/>
+    <xs:element name="dTotPDR" type="xs:decimal"/>
+    <xs:element name="dLIva5" type="xs:decimal"/>
+    <xs:element name="dLiva10" type="xs:decimal"/>
+    <xs:element name="dLtotIva" type="xs:decimal"/>
+    <xs:element name="dBaseImp5" type="xs:decimal"/>
+    <xs:element name="dBaseImp10" type="xs:decimal"/>
+    <xs:element name="dTbasImpIVA" type="xs:decimal"/>
+    <xs:element name="dLtotIsc" type="xs:decimal"/>
+    <xs:element name="dBaseImpISC" type="xs:decimal"/>
+    <xs:element name="gInfPed">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="dConPed"/>
+                <xs:element ref="dInfInt"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dConPed" type="xs:string"/>
+    <xs:element name="dInfInt" type="xs:string"/>
+    <xs:element name="gCamFuFD">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="dCarQR"/>
+                <xs:element ref="dInfAdic"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dCarQR" type="xs:string"/>
+    <xs:element name="dInfAdic" type="xs:string"/>
+    <xs:element name="dNomFan" type="xs:string"/>
+    <xs:element name="dDtipDRec" type="xs:string"/>
+</xs:schema>

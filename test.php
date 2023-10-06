@@ -1,18 +1,17 @@
 <?php
-header ("Content-Type:text/xml");
+//header ("Content-Type:text/xml");
 
 //ESTE JSON ES PARA HACER PRUEBAS NADA MÁS
 $json = 
 '{"dVerFor":150,
     "DE":[
         {
-            "Id":"01800261658019002007094122023091018521597072",
-            "dDVId":0,
-            "dFecFirma":"2023-10-01T00:00:00",
+            "dDVId":9,
             "dSisFact":5,
             "iTipEmi":1,
             "dDesTipEmi":"Normal",
             "dCodSeg":"123456789",
+            "dInfoEmi":1,
             "iTiDE":1,
             "dDesTiDE":"Factura electrónica",
             "dNumTim":16032671,
@@ -30,9 +29,8 @@ $json =
             "dDesMoneOpe":"Guarani",
             "dRucEm":80026165,
             "dDVEmi":8,
-            "iTipCont":2,
+            "iTipCont":1,
             "dNomEmi":"Supermercados Pueblo S.A",
-            "dNomFanEmi":"Supermercados Pueblo S.A",
             "dDirEmi":"Avda Artigas",
             "dNumCas":0,
             "cDepEmi":1,
@@ -52,7 +50,6 @@ $json =
             "iTiContRec":1,
             "dRucRec":2278132,
             "dDVRec":3,
-            "dNumIDRec":"2278132-3",
             "dNomRec":"Paulo Villamayor",
             "iIndPres":1,
             "dDesIndPres":"Operación presencial",
@@ -65,7 +62,7 @@ $json =
             "dDMoneTiPag":"Guarani",
             "iDenTarj":99,
             "dDesDenTarj":"Infonet - Debito",
-            "iForProPa":1
+            "iForProPa":2
         }
     ],
     "items":[
@@ -135,8 +132,6 @@ $json =
     ],
     "gTotSub":[
         {
-            "dSubExe":0,
-			"dSubExo":0,
 			"dSub5":0,
 			"dSub10":81750.00000000,
 			"dTotOpe":81750.00000000,
@@ -167,9 +162,10 @@ include 'sifen.php';
 
 $xml = new sifen();
 
-$xml->generar_xml($json, "LocoFactura23", "80130124_6.key", "80130124_6.pub");
+$retorno = $xml->generar_xml($json, "LocoFactura23", "80130124_6.key", "80130124_6.cer");
+echo $retorno[0]; //Indice 0 es el XML, indice 1 es el npumero de la factura o Id
 
-echo $xml->enviar_xml("01800261658019002007094122023091018521597072", "80130124_6_send.key", "80130124_6.cer");
+//echo $xml->enviar_xml("01800261658019002007094122023091018521597072", "80130124_6_send.key", "80130124_6.cer");
 
 //echo $xml->aravo();
 ?>
