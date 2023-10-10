@@ -1,16 +1,14 @@
 <?php
-//header ("Content-Type:text/xml");
+header ("Content-Type:text/xml");
 
 //ESTE JSON ES PARA HACER PRUEBAS NADA MÁS
 $json = 
 '{"dVerFor":150,
     "DE":[
         {
-            "dDVId":9,
             "dSisFact":5,
             "iTipEmi":1,
             "dDesTipEmi":"Normal",
-            "dCodSeg":"123456789",
             "dInfoEmi":1,
             "iTiDE":1,
             "dDesTiDE":"Factura electrónica",
@@ -18,7 +16,6 @@ $json =
             "dEst":"019",
 			"dPunExp":"002",
 			"dNumDoc":"0036979",
-			"dSerieNum":"AA",
 			"dFeIniT":"2022-11-21",
             "dFeEmiDE":"2023-10-01T00:00:00",
             "iTipTra":1,
@@ -67,92 +64,19 @@ $json =
     ],
     "items":[
         {
-            "dCodInt":222459,
             "dDesProSer":"BOLSA 1",
-            "cUniMed":77,
-            "dDesUniMed":"UNI",
-            "dCantProSer":1.000,
-            "dPUniProSer":200.000,
-            "dTotBruOpeItem":200.0,
-            "dDescItem":0,
-            "dPorcDesIt":0,
-            "dDescGloItem":0,
-            "dAntPreUniIt":0,
-            "dAntGloPreUniIt":0,
-            "dTotOpeItem":200.00,
-            "iAfecIVA":1,
-            "dDesAfecIVA":"Gravado IVA",
-            "dPropIVA":100,
-            "dTasaIVA":10,
-            "dBasGravIVA":182.00,
-            "dLiqIVAItem":18.00
+            "dCantProSer":1,
+            "dPUniProSer":200
         },
         {
-            "dCodInt":222459,
             "dDesProSer":"BOLSA 2",
-            "cUniMed":77,
-            "dDesUniMed":"UNI",
-            "dCantProSer":1.000,
-            "dPUniProSer":200.000,
-            "dTotBruOpeItem":200.0,
-            "dDescItem":0,
-            "dPorcDesIt":0,
-            "dDescGloItem":0,
-            "dAntPreUniIt":0,
-            "dAntGloPreUniIt":0,
-            "dTotOpeItem":200.00,
-            "iAfecIVA":1,
-            "dDesAfecIVA":"Gravado IVA",
-            "dPropIVA":100,
-            "dTasaIVA":10,
-            "dBasGravIVA":182.00,
-            "dLiqIVAItem":18.00
+            "dCantProSer":1,
+            "dPUniProSer":200
         },
         {
-            "dCodInt":222459,
             "dDesProSer":"BOLSA 3",
-            "cUniMed":77,
-            "dDesUniMed":"UNI",
-            "dCantProSer":1.000,
-            "dPUniProSer":200.000,
-            "dTotBruOpeItem":200.0,
-            "dDescItem":0,
-            "dPorcDesIt":0,
-            "dDescGloItem":0,
-            "dAntPreUniIt":0,
-            "dAntGloPreUniIt":0,
-            "dTotOpeItem":200.00,
-            "iAfecIVA":1,
-            "dDesAfecIVA":"Gravado IVA",
-            "dPropIVA":100,
-            "dTasaIVA":10,
-            "dBasGravIVA":182.00,
-            "dLiqIVAItem":18.00
-        }
-    ],
-    "gTotSub":[
-        {
-			"dSub5":0,
-			"dSub10":81750.00000000,
-			"dTotOpe":81750.00000000,
-			"dTotDesc":0,
-			"dTotDescGlotem":0,
-			"dTotAntItem":0,
-			"dTotAnt":0,
-			"dPorcDescTotal":0,
-			"dDescTotal":0,
-			"dAnticipo":0,
-			"dRedon":0,
-			"dTotGralOpe":81750.00000000,
-			"dIVA5":0,
-			"dIVA10":7431.00000000,
-			"dLiqTotIVA5":0,
-			"dLiqTotIVA10":0,
-			"dIVAComi":0,
-			"dTotIVA":7431,
-			"dBaseGrav5":0,
-			"dBaseGrav10":74319.00000000,
-			"dTBasGraIVA":74319
+            "dCantProSer":1,
+            "dPUniProSer":200
         }
     ]
 }';
@@ -163,9 +87,7 @@ include 'sifen.php';
 $xml = new sifen();
 
 $retorno = $xml->generar_xml($json, "LocoFactura23", "80130124_6.key", "80130124_6.cer");
-echo $retorno[0]; //Indice 0 es el XML, indice 1 es el npumero de la factura o Id
+//echo $retorno[0]; //Indice 0 es el XML, indice 1 es el npumero de la factura o Id
 
-//echo $xml->enviar_xml("01800261658019002007094122023091018521597072", "80130124_6_send.key", "80130124_6.cer");
-
-//echo $xml->aravo();
+echo $xml->enviar_xml($retorno[1], "80130124_6_send.key", "80130124_6.cer");
 ?>

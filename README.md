@@ -1,21 +1,21 @@
-# sifen V: 0.3.0
-API de Conexión y Generación de Factura de la SET/SIFEN Paraguay
+# sifen V: 0.4.0
+CLASE de Conexión y Generación de Factura de la SET/SIFEN Paraguay
 
-Aquí iremos actualizando todo lo que se pueda sobre el sistema de facturación de la SIFEN y esta nueva API con todo lo necesario.
+Aquí iremos actualizando todo lo que se pueda sobre el sistema de facturación de la SIFEN y esta nueva CLASE con todo lo necesario.
 
 Hasta el momento se puede ver el código y cualquier mejora que se necesite bienvenido sea las sugerencias.
-De momento hago una pequeña descripción de los archivos
+De momento hago una pequeña descripción de la clase
 
 # Notas:
-Se debe crear una carpeta llaves dentro de la cual se deberá meter las llaves necesarias para el funcionamiento de la api
+Se debe crear una carpeta llaves dentro de la cual se deberá meter las llaves necesarias para el funcionamiento de la de la clase
 
 # Modo de USO de las librerías:
-1. El archivo de.php es el encargado de generar el archivo xml firmado que luego lo guarda dentro de la carpeta de/ con el nombre del número de Id enviado
-2. El archivo sedn_xml.php lo que hace es enviar el archivo generado previamente y ya firmado a los servidores de la SIFEN
-3. El archivo aravo.php en este momento lo que hace es traer la hora de los servidores proporcionados por la SIFEN ya que la hora no debe estar adelantado al momento de hacer el envío del xml según la referencia de estos servidores
-4. El archivo test.php muestra el funcionamiento del archivo de.php enviando un JSON al mismo y generando así un archivo firmado.
-5. En caso de querer implementar se debe enviar un archivo JSON a de.php para que genere el archivo xml pedido por la SIFEN.
-6. Los detalles y ejemplo del JSON y las necesidades de las mismas puedes encontrarlas tanto en el archivo test.php como en el manual de la SIFEN
+1. Se incluye la librería sifen.php
+2. Se crear un objeto de la clase
+3. Se Genera un archivo xml enviado los datos necesarios en formato JSON al objeto con la función generar_xml()
+4. Se devuelve un array con el indice 0 con el archivo XML generado y firmado y en el indice 1 el Id del documento
+5. Se procede a enviar el documento generado anteriormente colocando el número de Id devuelto en el array
+6. Se guarda de manera automática lo devuelto por los servidores de la SIFEN dentro de la carpeta de/ donde se encuentra la clase
 
 # Necesidades de PHP
 1. En el archivo ini.php o en su servidor habilitar openssl para todo lo referente a la firma
@@ -30,8 +30,9 @@ El archivo sifen.php ya es una clase en si misma.
 Se lo puede incluir directamente en su proyecto y hacer llamada directa
 
 ```php
+
 include 'sifen.php'; //Incluimos la librería
 $xml = new sifen(); //Creamos un objeto de la clase sifen
-echo $xml->generar_xml($json, "contraseña", "llave_privada.key", "llave_publica.pub"); //Llamamos a la función generar_xml enviando los parametros a ser usados
-$xml->enviar_xml('01800261658019002007094122023091018521597073','llave_privada_abierta.key','certificado.cer'); //Llamamos a la función para enviar el archivo a la SIFEN
+$arreglo = $xml->generar_xml($json, "contraseña", "llave_privada.key", "certificado.cer"); //Llamamos a la función generar_xml enviando los parametros a ser usados
+$xml->enviar_xml($arreglo[1],'llave_privada_abierta.key','certificado.cer'); //Llamamos a la función para enviar el archivo a la SIFEN
 ```
