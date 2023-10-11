@@ -26,7 +26,7 @@ class sifen{
         $dFeEmiDE = $fecha_de_emision_de->format('Ymd');
 
         //Generamos un código de seguridad aleatoria de 9 digitos
-        $dCodSeg = rand(000000001,999999999);
+        $dCodSeg = "" . rand(000000001,999999999);
 
         //Concatenamos todos los datos para la generación del codigo de seguridad
         $codi_seguridad = "0" . $json_de['DE'][0]['iTiDE'] . $json_de['DE'][0]['dRucEm'] . $json_de['DE'][0]['dDVEmi'] . $json_de['DE'][0]['dEst'] . $json_de['DE'][0]['dPunExp'] . $json_de['DE'][0]['dNumDoc'] . $json_de['DE'][0]['iTipCont'] . $dFeEmiDE . $json_de['DE'][0]['iTipEmi'] . $dCodSeg;
@@ -173,118 +173,118 @@ class sifen{
         }
 
         //Reemplazamos los datos dentro del modelo XML con los datos enviados
-        $xml_crudo = <<<EOF
-        <rDE xmlns="http://ekuatia.set.gov.py/sifen/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ekuatia.set.gov.py/sifen/xsd/siRecepDE_v150.xsd">
-            <dVerFor>{$json_de['dVerFor']}</dVerFor>
-            <DE Id="$Id">
-                <dDVId>$cv</dDVId>
-                <dFecFirma>$dFecFirma</dFecFirma>
-                <dSisFact>{$json_de['DE'][0]['dSisFact']}</dSisFact>
-                <gOpeDE>
-                    <iTipEmi>1{$json_de['DE'][0]['iTipEmi']}</iTipEmi>
-                    <dDesTipEmi>{$json_de['DE'][0]['dDesTipEmi']}</dDesTipEmi>
-                    <dCodSeg>$dCodSeg</dCodSeg>
-                    <dInfoEmi>{$json_de['DE'][0]['dInfoEmi']}</dInfoEmi>
-                </gOpeDE>
-                <gTimb>
-                    <iTiDE>{$json_de['DE'][0]['iTiDE']}</iTiDE>
-                    <dDesTiDE>{$json_de['DE'][0]['dDesTiDE']}</dDesTiDE>
-                    <dNumTim>{$json_de['DE'][0]['dNumTim']}</dNumTim>
-                    <dEst>{$json_de['DE'][0]['dEst']}</dEst>
-                    <dPunExp>{$json_de['DE'][0]['dPunExp']}</dPunExp>
-                    <dNumDoc>{$json_de['DE'][0]['dNumDoc']}</dNumDoc>
-                    <dFeIniT>{$json_de['DE'][0]['dFeIniT']}</dFeIniT>
-                </gTimb>
-                <gDatGralOpe>
-                    <dFeEmiDE>{$json_de['DE'][0]['dFeEmiDE']}</dFeEmiDE>
-                    <gOpeCom>
-                        <iTipTra>{$json_de['DE'][0]['iTipTra']}</iTipTra>
-                        <dDesTipTra>{$json_de['DE'][0]['dDesTipTra']}</dDesTipTra>
-                        <iTImp>{$json_de['DE'][0]['iTImp']}</iTImp>
-                        <dDesTImp>{$json_de['DE'][0]['dDesTImp']}</dDesTImp>
-                        <cMoneOpe>{$json_de['DE'][0]['cMoneOpe']}</cMoneOpe>
-                        <dDesMoneOpe>{$json_de['DE'][0]['dDesMoneOpe']}</dDesMoneOpe>
-                    </gOpeCom>
-                    <gEmis>
-                        <dRucEm>{$json_de['DE'][0]['dRucEm']}</dRucEm>
-                        <dDVEmi>{$json_de['DE'][0]['dDVEmi']}</dDVEmi>
-                        <iTipCont>{$json_de['DE'][0]['iTipCont']}</iTipCont>
-                        <dNomEmi>{$json_de['DE'][0]['dNomEmi']}</dNomEmi>
-                        <dDirEmi>{$json_de['DE'][0]['dDirEmi']}</dDirEmi>
-                        <dNumCas>{$json_de['DE'][0]['dNumCas']}</dNumCas>
-                        <cDepEmi>{$json_de['DE'][0]['cDepEmi']}</cDepEmi>
-                        <dDesDepEmi>{$json_de['DE'][0]['dDesDepEmi']}</dDesDepEmi>
-                        <cDisEmi>{$json_de['DE'][0]['cDisEmi']}</cDisEmi>
-                        <dDesDisEmi>{$json_de['DE'][0]['dDesDisEmi']}</dDesDisEmi>
-                        <cCiuEmi>{$json_de['DE'][0]['cCiuEmi']}</cCiuEmi>
-                        <dDesCiuEmi>{$json_de['DE'][0]['dDesCiuEmi']}</dDesCiuEmi>
-                        <dTelEmi>{$json_de['DE'][0]['dTelEmi']}</dTelEmi>
-                        <dEmailE>{$json_de['DE'][0]['dEmailE']}</dEmailE>
-                        <gActEco>
-                            <cActEco>{$json_de['DE'][0]['cActEco']}</cActEco>
-                            <dDesActEco>{$json_de['DE'][0]['dDesActEco']}</dDesActEco>
-                        </gActEco>
-                    </gEmis>
-                    <gDatRec>
-                        <iNatRec>{$json_de['DE'][0]['iNatRec']}</iNatRec>
-                        <iTiOpe>{$json_de['DE'][0]['iTiOpe']}</iTiOpe>
-                        <cPaisRec>{$json_de['DE'][0]['cPaisRec']}</cPaisRec>
-                        <dDesPaisRe>{$json_de['DE'][0]['dDesPaisRe']}</dDesPaisRe>
-                        <iTiContRec>{$json_de['DE'][0]['iTiContRec']}</iTiContRec>
-                        <dRucRec>{$json_de['DE'][0]['dRucRec']}</dRucRec>
-                        <dDVRec>{$json_de['DE'][0]['dDVRec']}</dDVRec>
-                        <dNomRec>{$json_de['DE'][0]['dNomRec']}</dNomRec>
-                    </gDatRec>
-                </gDatGralOpe>
-                <gDtipDE>
-                    <gCamFE>
-                        <iIndPres>{$json_de['DE'][0]['iIndPres']}</iIndPres>
-                        <dDesIndPres>{$json_de['DE'][0]['dDesIndPres']}</dDesIndPres>
-                    </gCamFE>
-                    <gCamCond>
-                        <iCondOpe>{$json_de['DE'][0]['iCondOpe']}</iCondOpe>
-                        <dDCondOpe>{$json_de['DE'][0]['dDCondOpe']}</dDCondOpe>
-                        <gPaConEIni>
-                            <iTiPago>{$json_de['DE'][0]['iTiPago']}</iTiPago>
-                            <dDesTiPag>{$json_de['DE'][0]['dDesTiPag']}</dDesTiPag>
-                            <dMonTiPag>{$json_de['DE'][0]['dMonTiPag']}</dMonTiPag>
-                            <cMoneTiPag>{$json_de['DE'][0]['cMoneTiPag']}</cMoneTiPag>
-                            <dDMoneTiPag>{$json_de['DE'][0]['dDMoneTiPag']}</dDMoneTiPag>
-                            <gPagTarCD>
-                                <iDenTarj>{$json_de['DE'][0]['iDenTarj']}</iDenTarj>
-                                <dDesDenTarj>{$json_de['DE'][0]['dDesDenTarj']}</dDesDenTarj>
-                                <iForProPa>{$json_de['DE'][0]['iForProPa']}</iForProPa>
-                            </gPagTarCD>
-                        </gPaConEIni>
-                    </gCamCond>
-                    $items
-                </gDtipDE>
-                <gTotSub>
-                    <dSub5>$dSub5</dSub5>
-                    <dSub10>$dSub10</dSub10>
-                    <dTotOpe>$dTotOpe</dTotOpe>
-                    <dTotDesc>$dTotDesc</dTotDesc>
-                    <dTotDescGlotem>$dTotDescGlotem</dTotDescGlotem>
-                    <dTotAntItem>$dTotAntItem</dTotAntItem>
-                    <dTotAnt>$dTotAnt</dTotAnt>
-                    <dPorcDescTotal>$dPorcDescTotal</dPorcDescTotal>
-                    <dDescTotal>$dDescTotal</dDescTotal>
-                    <dAnticipo>$dAnticipo</dAnticipo>
-                    <dRedon>$dRedon</dRedon>
-                    <dTotGralOpe>$dTotGralOpe</dTotGralOpe>
-                    <dIVA5>$dIVA5</dIVA5>
-                    <dIVA10>$dIVA10</dIVA10>
-                    <dLiqTotIVA5>$dLiqTotIVA5</dLiqTotIVA5>
-                    <dLiqTotIVA10>$dLiqTotIVA10</dLiqTotIVA10>
-                    <dIVAComi>$dIVAComi</dIVAComi>
-                    <dTotIVA>$dTotIVA</dTotIVA>
-                    <dBaseGrav5>$dBaseGrav5</dBaseGrav5>
-                    <dBaseGrav10>$dBaseGrav10</dBaseGrav10>
-                    <dTBasGraIVA>$dTBasGraIVA</dTBasGraIVA>
-                </gTotSub>
-            </DE>
-        </rDE>
-        EOF;
+$xml_crudo = <<<EOF
+<rDE xmlns="http://ekuatia.set.gov.py/sifen/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ekuatia.set.gov.py/sifen/xsd/siRecepDE_v150.xsd">
+    <dVerFor>150</dVerFor>
+    <DE Id="$Id">
+        <dDVId>$cv</dDVId>
+        <dFecFirma>$dFecFirma</dFecFirma>
+        <dSisFact>{$json_de['DE'][0]['dSisFact']}</dSisFact>
+        <gOpeDE>
+            <iTipEmi>1{$json_de['DE'][0]['iTipEmi']}</iTipEmi>
+            <dDesTipEmi>{$json_de['DE'][0]['dDesTipEmi']}</dDesTipEmi>
+            <dCodSeg>$dCodSeg</dCodSeg>
+            <dInfoEmi>{$json_de['DE'][0]['dInfoEmi']}</dInfoEmi>
+        </gOpeDE>
+        <gTimb>
+            <iTiDE>{$json_de['DE'][0]['iTiDE']}</iTiDE>
+            <dDesTiDE>{$json_de['DE'][0]['dDesTiDE']}</dDesTiDE>
+            <dNumTim>{$json_de['DE'][0]['dNumTim']}</dNumTim>
+            <dEst>{$json_de['DE'][0]['dEst']}</dEst>
+            <dPunExp>{$json_de['DE'][0]['dPunExp']}</dPunExp>
+            <dNumDoc>{$json_de['DE'][0]['dNumDoc']}</dNumDoc>
+            <dFeIniT>{$json_de['DE'][0]['dFeIniT']}</dFeIniT>
+        </gTimb>
+        <gDatGralOpe>
+            <dFeEmiDE>{$json_de['DE'][0]['dFeEmiDE']}</dFeEmiDE>
+            <gOpeCom>
+                <iTipTra>{$json_de['DE'][0]['iTipTra']}</iTipTra>
+                <dDesTipTra>{$json_de['DE'][0]['dDesTipTra']}</dDesTipTra>
+                <iTImp>{$json_de['DE'][0]['iTImp']}</iTImp>
+                <dDesTImp>{$json_de['DE'][0]['dDesTImp']}</dDesTImp>
+                <cMoneOpe>{$json_de['DE'][0]['cMoneOpe']}</cMoneOpe>
+                <dDesMoneOpe>{$json_de['DE'][0]['dDesMoneOpe']}</dDesMoneOpe>
+            </gOpeCom>
+            <gEmis>
+                <dRucEm>{$json_de['DE'][0]['dRucEm']}</dRucEm>
+                <dDVEmi>{$json_de['DE'][0]['dDVEmi']}</dDVEmi>
+                <iTipCont>{$json_de['DE'][0]['iTipCont']}</iTipCont>
+                <dNomEmi>{$json_de['DE'][0]['dNomEmi']}</dNomEmi>
+                <dDirEmi>{$json_de['DE'][0]['dDirEmi']}</dDirEmi>
+                <dNumCas>{$json_de['DE'][0]['dNumCas']}</dNumCas>
+                <cDepEmi>{$json_de['DE'][0]['cDepEmi']}</cDepEmi>
+                <dDesDepEmi>{$json_de['DE'][0]['dDesDepEmi']}</dDesDepEmi>
+                <cDisEmi>{$json_de['DE'][0]['cDisEmi']}</cDisEmi>
+                <dDesDisEmi>{$json_de['DE'][0]['dDesDisEmi']}</dDesDisEmi>
+                <cCiuEmi>{$json_de['DE'][0]['cCiuEmi']}</cCiuEmi>
+                <dDesCiuEmi>{$json_de['DE'][0]['dDesCiuEmi']}</dDesCiuEmi>
+                <dTelEmi>{$json_de['DE'][0]['dTelEmi']}</dTelEmi>
+                <dEmailE>{$json_de['DE'][0]['dEmailE']}</dEmailE>
+                <gActEco>
+                    <cActEco>{$json_de['DE'][0]['cActEco']}</cActEco>
+                    <dDesActEco>{$json_de['DE'][0]['dDesActEco']}</dDesActEco>
+                </gActEco>
+            </gEmis>
+            <gDatRec>
+                <iNatRec>{$json_de['DE'][0]['iNatRec']}</iNatRec>
+                <iTiOpe>{$json_de['DE'][0]['iTiOpe']}</iTiOpe>
+                <cPaisRec>{$json_de['DE'][0]['cPaisRec']}</cPaisRec>
+                <dDesPaisRe>{$json_de['DE'][0]['dDesPaisRe']}</dDesPaisRe>
+                <iTiContRec>{$json_de['DE'][0]['iTiContRec']}</iTiContRec>
+                <dRucRec>{$json_de['DE'][0]['dRucRec']}</dRucRec>
+                <dDVRec>{$json_de['DE'][0]['dDVRec']}</dDVRec>
+                <dNomRec>{$json_de['DE'][0]['dNomRec']}</dNomRec>
+            </gDatRec>
+        </gDatGralOpe>
+        <gDtipDE>
+            <gCamFE>
+                <iIndPres>{$json_de['DE'][0]['iIndPres']}</iIndPres>
+                <dDesIndPres>{$json_de['DE'][0]['dDesIndPres']}</dDesIndPres>
+            </gCamFE>
+            <gCamCond>
+                <iCondOpe>{$json_de['DE'][0]['iCondOpe']}</iCondOpe>
+                <dDCondOpe>{$json_de['DE'][0]['dDCondOpe']}</dDCondOpe>
+                <gPaConEIni>
+                    <iTiPago>{$json_de['DE'][0]['iTiPago']}</iTiPago>
+                    <dDesTiPag>{$json_de['DE'][0]['dDesTiPag']}</dDesTiPag>
+                    <dMonTiPag>{$json_de['DE'][0]['dMonTiPag']}</dMonTiPag>
+                    <cMoneTiPag>{$json_de['DE'][0]['cMoneTiPag']}</cMoneTiPag>
+                    <dDMoneTiPag>{$json_de['DE'][0]['dDMoneTiPag']}</dDMoneTiPag>
+                    <gPagTarCD>
+                        <iDenTarj>{$json_de['DE'][0]['iDenTarj']}</iDenTarj>
+                        <dDesDenTarj>{$json_de['DE'][0]['dDesDenTarj']}</dDesDenTarj>
+                        <iForProPa>{$json_de['DE'][0]['iForProPa']}</iForProPa>
+                    </gPagTarCD>
+                </gPaConEIni>
+            </gCamCond>
+            $items
+        </gDtipDE>
+        <gTotSub>
+            <dSub5>$dSub5</dSub5>
+            <dSub10>$dSub10</dSub10>
+            <dTotOpe>$dTotOpe</dTotOpe>
+            <dTotDesc>$dTotDesc</dTotDesc>
+            <dTotDescGlotem>$dTotDescGlotem</dTotDescGlotem>
+            <dTotAntItem>$dTotAntItem</dTotAntItem>
+            <dTotAnt>$dTotAnt</dTotAnt>
+            <dPorcDescTotal>$dPorcDescTotal</dPorcDescTotal>
+            <dDescTotal>$dDescTotal</dDescTotal>
+            <dAnticipo>$dAnticipo</dAnticipo>
+            <dRedon>$dRedon</dRedon>
+            <dTotGralOpe>$dTotGralOpe</dTotGralOpe>
+            <dIVA5>$dIVA5</dIVA5>
+            <dIVA10>$dIVA10</dIVA10>
+            <dLiqTotIVA5>$dLiqTotIVA5</dLiqTotIVA5>
+            <dLiqTotIVA10>$dLiqTotIVA10</dLiqTotIVA10>
+            <dIVAComi>$dIVAComi</dIVAComi>
+            <dTotIVA>$dTotIVA</dTotIVA>
+            <dBaseGrav5>$dBaseGrav5</dBaseGrav5>
+            <dBaseGrav10>$dBaseGrav10</dBaseGrav10>
+            <dTBasGraIVA>$dTBasGraIVA</dTBasGraIVA>
+        </gTotSub>
+    </DE>
+</rDE>
+EOF;
 
         //Comenzamos la parte de la firma
         //Leer el contenido del certificado poara agregar en X509
@@ -299,7 +299,7 @@ class sifen{
 
         //Lo que se procede a firmar es todo el contenido entre las etiquetas DE, una vez firmado ya tiene todos los otros datos salvo el QR
         //Cargar el archivo XML que deseas firmar
-        $xml = new DOMDocument();
+        $xml = new DOMDocument('1.0', 'UTF-8');
         $xml->loadXML($xml_crudo);
 
         //Obtener el contenido dentro de <DE></DE>, se canoniza con la función C14N del objeto DOMDocument()
@@ -464,15 +464,16 @@ class sifen{
         $dom = new DOMDocument();
         $dom->loadXML($xmlData); // Carga tu XML en el objeto DOMDocument
 
-        // Obtener el contenido del elemento raíz (sin la declaración XML)
+        //Obtener el contenido del elemento raíz (sin la declaración XML)
         $contenidoXML = $dom->saveXML($dom->documentElement);
 
         //Insertgamos el contenido del archivo XML dentro de la estructura SOAP, Pag. 36 del manual
-        $soapEnvelope = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+        $soapEnvelope = '
+        <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
             <soap:Header/>
             <soap:Body>
                 <rEnviDe xmlns="http://ekuatia.set.gov.py/sifen/xsd">
-                    <dId>3</dId>
+                    <dId>20</dId>
                     <xDE>
                         ' . $contenidoXML . '
                     </xDE>
