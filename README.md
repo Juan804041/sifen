@@ -36,7 +36,7 @@ $arreglo = $xml->generar_xml($json, "contraseña", "llave_privada.key", "certifi
 $xml->enviar_xml($arreglo[1],'llave_privada_abierta.key','certificado.cer'); //Llamamos a la función para enviar el archivo a la SIFEN
 ```
 
-# Composición del Archivo JSON a enviar la función generar_xml()
+# Composición del Archivo JSON a enviar a la función generar_xml()
 1. Cargar todo el contenido del JSON en una variable y enviarlo, en el ejemplo la variable $json contiene todo lo siguiente
 ```json
 {"DE":[
@@ -49,7 +49,7 @@ $xml->enviar_xml($arreglo[1],'llave_privada_abierta.key','certificado.cer'); //L
             "dDesTiDE":"Factura electrónica",
             "dNumTim":12560693,
             "dEst":"001",
-			"dPunExp":"001",
+            "dPunExp":"001",
 			"dNumDoc":"0000004",
 			"dFeIniT":"2022-11-21",
             "dFeEmiDE":"2023-10-01T00:00:00",
@@ -99,19 +99,22 @@ $xml->enviar_xml($arreglo[1],'llave_privada_abierta.key','certificado.cer'); //L
     ],
     "items":[
         {
-            "dDesProSer":"BOLSA 1",
+            "dDesProSer":"BOLSA",
             "dCantProSer":1,
-            "dPUniProSer":200
+            "dPUniProSer":200,
+            "dTasaIVA":10
         },
         {
-            "dDesProSer":"BOLSA 2",
+            "dDesProSer":"Remera Blanca Mediano",
             "dCantProSer":1,
-            "dPUniProSer":200
+            "dPUniProSer":15800,
+            "dTasaIVA":10
         },
         {
-            "dDesProSer":"BOLSA 3",
+            "dDesProSer":"Zapato XL",
             "dCantProSer":1,
-            "dPUniProSer":200
+            "dPUniProSer":185000,
+            "dTasaIVA":10
         }
     ]
 }

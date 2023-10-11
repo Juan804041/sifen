@@ -63,19 +63,22 @@ $json =
     ],
     "items":[
         {
-            "dDesProSer":"BOLSA 1",
+            "dDesProSer":"BOLSA",
             "dCantProSer":1,
-            "dPUniProSer":200
+            "dPUniProSer":200,
+            "dTasaIVA":10
         },
         {
-            "dDesProSer":"BOLSA 2",
+            "dDesProSer":"Remera Blanca Mediano",
             "dCantProSer":1,
-            "dPUniProSer":200
+            "dPUniProSer":15800,
+            "dTasaIVA":10
         },
         {
-            "dDesProSer":"BOLSA 3",
+            "dDesProSer":"Zapato XL",
             "dCantProSer":1,
-            "dPUniProSer":200
+            "dPUniProSer":185000,
+            "dTasaIVA":10
         }
     ]
 }';
