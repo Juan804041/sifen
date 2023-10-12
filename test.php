@@ -6,7 +6,7 @@ $json =
 '{"DE":[
         {
             "dSisFact":1,
-            "iTipEmi":11,
+            "iTipEmi":1,
             "dDesTipEmi":"Normal",
             "dInfoEmi":1,
             "iTiDE":1,
@@ -63,18 +63,21 @@ $json =
     ],
     "items":[
         {
+            "dCodInt":41,
             "dDesProSer":"BOLSA",
             "dCantProSer":1,
             "dPUniProSer":200,
             "dTasaIVA":10
         },
         {
+            "dCodInt":52,
             "dDesProSer":"Remera Blanca Mediano",
             "dCantProSer":1,
             "dPUniProSer":15800,
             "dTasaIVA":10
         },
         {
+            "dCodInt":63,
             "dDesProSer":"Zapato XL",
             "dCantProSer":1,
             "dPUniProSer":185000,

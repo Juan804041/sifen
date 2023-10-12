@@ -1,5 +1,7 @@
 <?php
 class sifen{
+    private $presicion = 6; //Precisión de ceros en numeros flotantes
+
      /**
      * Esta función genera el xml para ser enviado a la sifen.
      *
@@ -26,7 +28,8 @@ class sifen{
         $dFeEmiDE = $fecha_de_emision_de->format('Ymd');
 
         //Generamos un código de seguridad aleatoria de 9 digitos
-        $dCodSeg = "" . rand(000000001,999999999);
+        $dCodSeg = str_pad(mt_rand(000000001,999999999), 9, "0", STR_PAD_LEFT); //Ver si usa una semilla irrepetible y rellenar el codSeg con cero al inicio en caso de no llegar a 9 digitos
+
 
         //Concatenamos todos los datos para la generación del codigo de seguridad
         $codi_seguridad = "0" . $json_de['DE'][0]['iTiDE'] . $json_de['DE'][0]['dRucEm'] . $json_de['DE'][0]['dDVEmi'] . $json_de['DE'][0]['dEst'] . $json_de['DE'][0]['dPunExp'] . $json_de['DE'][0]['dNumDoc'] . $json_de['DE'][0]['iTipCont'] . $dFeEmiDE . $json_de['DE'][0]['iTipEmi'] . $dCodSeg;
@@ -37,6 +40,7 @@ class sifen{
         $Id = $codi_seguridad . $cv;
 
         //Creamos todas las variables para los totales
+        $dSubExe = 0;
         $dSubExe = 0;
         $dSubExo = 0;
         $dSub5 = 0;
@@ -69,9 +73,6 @@ class sifen{
             $dCantProSer = is_float($item['dCantProSer']) ? $item['dCantProSer'] : number_format(round($item['dCantProSer']),4,".","");
             $dPUniProSer = is_float($item['dPUniProSer']) ? $item['dPUniProSer'] : number_format(round($item['dPUniProSer']),4,".","");
 
-            //Si no se envía código interno del artículo o item lo ponemos vacío
-            $codigo_interno = isset($item['dCodInt']) ? "<dCodInt>{$item['dCodInt']}</dCodInt>" : "";
-
             //En caso de no enviar la unidad de medida usamos la Unidad - 77
             $cUniMed = isset($item['cUniMed']) ? $item['cUniMed'] : 77;
             $dDesUniMed = isset($item['dDesUniMed']) ? $item['dDesUniMed'] : 'UNI';
@@ -91,9 +92,9 @@ class sifen{
 
             //Variable para el calculo de los totales
             $dTotBruOpeItem = $dCantProSer * $dPUniProSer;
-            $dTotBruOpeItem = number_format(round($dTotBruOpeItem),2,".","");
+            $dTotBruOpeItem = number_format(round($dTotBruOpeItem),$this->presicion,".","");
             $dTotOpeItem = ($dPUniProSer - $dDescItem - $dPorcDesIt - $dDescGloItem - $dAntPreUniIt - $dAntGloPreUniIt) * $dCantProSer;
-            $dTotOpeItem = number_format(round($dTotOpeItem),2,".","");
+            $dTotOpeItem = number_format(round($dTotOpeItem),$this->presicion,".","");
 
             //Dependiendo del porcentaje de IVA hacemos los calculos correspondientes
             switch ($dTasaIVA) {
@@ -103,38 +104,38 @@ class sifen{
                     break;
                 case 5: //Caso 5% de IVA
                     //Totales del Item
-                    $dBasGravIVA = number_format(round(($dTotOpeItem * ($dPropIVA/100))/1.05),4,".","");
-                    $dLiqIVAItem = number_format(round($dBasGravIVA * (5/100)),4,".","");
+                    $dBasGravIVA = number_format(round(($dTotOpeItem * ($dPropIVA/100))/1.05),$this->presicion,".","");
+                    $dLiqIVAItem = number_format(round($dBasGravIVA * (5/100)),$this->presicion,".","");
                     //Totales del DE
                     $dSub5 += $dTotBruOpeItem;
-                    $dSub5 = number_format(round($dSub5),4,".","");
+                    $dSub5 = number_format(round($dSub5),$this->presicion,".","");
                     $dTotOpe += $dTotBruOpeItem;
-                    $dTotOpe = number_format(round($dTotOpe),4,".","");
+                    $dTotOpe = number_format(round($dTotOpe),$this->presicion,".","");
                     $dTotGralOpe += $dTotBruOpeItem;
-                    $dTotGralOpe = number_format(round($dTotGralOpe),4,".","");
+                    $dTotGralOpe = number_format(round($dTotGralOpe),$this->presicion,".","");
                     $dIVA5 += $dLiqIVAItem;
-                    $dIVA5 = number_format(round($dIVA5),4,".","");
+                    $dIVA5 = number_format(round($dIVA5),$this->presicion,".","");
                     $dTotIVA += $dLiqIVAItem;
                     $dBaseGrav5 += $dBasGravIVA;
-                    $dBaseGrav5 = number_format(round($dBaseGrav5),4,".","");
+                    $dBaseGrav5 = number_format(round($dBaseGrav5),$this->presicion,".","");
                     $dTBasGraIVA += $dBasGravIVA;
                     break;
                 case 10: //Caso 10% de IVA
                     //Totales del Item
-                    $dBasGravIVA = number_format(round(($dTotOpeItem * ($dPropIVA/100))/1.1),4,".","");
-                    $dLiqIVAItem = number_format(round($dBasGravIVA * (10/100)),4,".","");
+                    $dBasGravIVA = number_format(round(($dTotOpeItem * ($dPropIVA/100))/1.1),$this->presicion,".","");
+                    $dLiqIVAItem = number_format(round($dBasGravIVA * (10/100)),$this->presicion,".","");
                     //Totales del DE
                     $dSub10 += $dTotBruOpeItem;
-                    $dSub10 = number_format(round($dSub10),4,".","");
+                    $dSub10 = number_format(round($dSub10),$this->presicion,".","");
                     $dTotOpe += $dTotBruOpeItem;
-                    $dTotOpe = number_format(round($dTotOpe),4,".","");
+                    $dTotOpe = number_format(round($dTotOpe),$this->presicion,".","");
                     $dTotGralOpe += $dTotBruOpeItem;
-                    $dTotGralOpe = number_format(round($dTotGralOpe),4,".","");
+                    $dTotGralOpe = number_format(round($dTotGralOpe),$this->presicion,".","");
                     $dIVA10 += $dLiqIVAItem;
-                    $dIVA10 = number_format(round($dIVA10),4,".","");
+                    $dIVA10 = number_format(round($dIVA10),$this->presicion,".","");
                     $dTotIVA += $dLiqIVAItem;
                     $dBaseGrav10 += $dBasGravIVA;
-                    $dBaseGrav10 = number_format(round($dBaseGrav10),4,".","");
+                    $dBaseGrav10 = number_format(round($dBaseGrav10),$this->presicion,".","");
                     $dTBasGraIVA += $dBasGravIVA;
                     break;
             }
@@ -142,46 +143,48 @@ class sifen{
 
             $cItems ++; //Sumar 1 por cada item
             $items .= <<<EOF
-            <gCamItem>
-                $codigo_interno
-                <dDesProSer>{$item['dDesProSer']}</dDesProSer>
-                <cUniMed>$cUniMed</cUniMed>
-                <dDesUniMed>$dDesUniMed</dDesUniMed>
-                <dCantProSer>$dCantProSer</dCantProSer>
-                <gValorItem>
-                    <dPUniProSer>$dPUniProSer</dPUniProSer>
-                    <dTotBruOpeItem>$dTotBruOpeItem</dTotBruOpeItem>
-                    <gValorRestaItem>
-                        <dDescItem>$dDescItem</dDescItem>
-                        <dPorcDesIt>$dPorcDesIt</dPorcDesIt>
-                        <dDescGloItem>$dDescGloItem</dDescGloItem>
-                        <dAntPreUniIt>$dAntPreUniIt</dAntPreUniIt>
-                        <dAntGloPreUniIt>$dAntGloPreUniIt</dAntGloPreUniIt>
-                        <dTotOpeItem>$dTotOpeItem</dTotOpeItem>
-                    </gValorRestaItem>
-                </gValorItem>
-                <gCamIVA>
-                    <iAfecIVA>$iAfecIVA</iAfecIVA>
-                    <dDesAfecIVA>$dDesAfecIVA</dDesAfecIVA>
-                    <dPropIVA>$dPropIVA</dPropIVA>
-                    <dTasaIVA>$dTasaIVA</dTasaIVA>
-                    <dBasGravIVA>$dBasGravIVA</dBasGravIVA>
-                    <dLiqIVAItem>$dLiqIVAItem</dLiqIVAItem>
-                </gCamIVA>
-            </gCamItem>
-            EOF;
+<gCamItem>
+    <dCodInt>{$item['dCodInt']}</dCodInt>
+    <dDesProSer>{$item['dDesProSer']}</dDesProSer>
+    <cUniMed>$cUniMed</cUniMed>
+    <dDesUniMed>$dDesUniMed</dDesUniMed>
+    <dCantProSer>$dCantProSer</dCantProSer>
+    <gValorItem>
+        <dPUniProSer>$dPUniProSer</dPUniProSer>
+        <dTotBruOpeItem>$dTotBruOpeItem</dTotBruOpeItem>
+        <gValorRestaItem>
+            <dDescItem>$dDescItem</dDescItem>
+            <dPorcDesIt>$dPorcDesIt</dPorcDesIt>
+            <dDescGloItem>$dDescGloItem</dDescGloItem>
+            <dAntPreUniIt>$dAntPreUniIt</dAntPreUniIt>
+            <dAntGloPreUniIt>$dAntGloPreUniIt</dAntGloPreUniIt>
+            <dTotOpeItem>$dTotOpeItem</dTotOpeItem>
+        </gValorRestaItem>
+    </gValorItem>
+    <gCamIVA>
+        <iAfecIVA>$iAfecIVA</iAfecIVA>
+        <dDesAfecIVA>$dDesAfecIVA</dDesAfecIVA>
+        <dPropIVA>$dPropIVA</dPropIVA>
+        <dTasaIVA>$dTasaIVA</dTasaIVA>
+        <dBasGravIVA>$dBasGravIVA</dBasGravIVA>
+        <dLiqIVAItem>$dLiqIVAItem</dLiqIVAItem>
+    </gCamIVA>
+</gCamItem>
+EOF;
         }
 
         //Reemplazamos los datos dentro del modelo XML con los datos enviados
 $xml_crudo = <<<EOF
-<rDE xmlns="http://ekuatia.set.gov.py/sifen/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ekuatia.set.gov.py/sifen/xsd/siRecepDE_v150.xsd">
+<rDE xmlns="http://ekuatia.set.gov.py/sifen/xsd" 
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="https://ekuatia.set.gov.py/sifen/xsd siRecepDE_v150.xsd">
     <dVerFor>150</dVerFor>
     <DE Id="$Id">
         <dDVId>$cv</dDVId>
         <dFecFirma>$dFecFirma</dFecFirma>
         <dSisFact>{$json_de['DE'][0]['dSisFact']}</dSisFact>
         <gOpeDE>
-            <iTipEmi>1{$json_de['DE'][0]['iTipEmi']}</iTipEmi>
+            <iTipEmi>{$json_de['DE'][0]['iTipEmi']}</iTipEmi>
             <dDesTipEmi>{$json_de['DE'][0]['dDesTipEmi']}</dDesTipEmi>
             <dCodSeg>$dCodSeg</dCodSeg>
             <dInfoEmi>{$json_de['DE'][0]['dInfoEmi']}</dInfoEmi>
@@ -260,6 +263,7 @@ $xml_crudo = <<<EOF
             $items
         </gDtipDE>
         <gTotSub>
+            <dSubExe>$dSubExe</dSubExe>
             <dSub5>$dSub5</dSub5>
             <dSub10>$dSub10</dSub10>
             <dTotOpe>$dTotOpe</dTotOpe>
@@ -299,8 +303,10 @@ EOF;
 
         //Lo que se procede a firmar es todo el contenido entre las etiquetas DE, una vez firmado ya tiene todos los otros datos salvo el QR
         //Cargar el archivo XML que deseas firmar
-        $xml = new DOMDocument('1.0', 'UTF-8');
+        $xml = new DOMDocument();
+        /*$xml->loadXML('<?xml version="1.0" encoding="UTF-899"?>' . $xml_crudo);*/
         $xml->loadXML($xml_crudo);
+
 
         //Obtener el contenido dentro de <DE></DE>, se canoniza con la función C14N del objeto DOMDocument()
         $de_contenido = $xml->getElementsByTagName('DE')->item(0)->C14N();
@@ -309,13 +315,15 @@ EOF;
         $digestValue = base64_encode(hash('sha256', $de_contenido));
 
         //Firmar el xml formado arriba
-        //openssl_sign($de_contenido, $signatureValue, $privateKey, OPENSSL_ALGO_SHA256);
-        openssl_sign($digestValue, $signatureValue, $privateKey, OPENSSL_ALGO_SHA256);
+        openssl_sign($de_contenido, $signatureValue, $privateKey, OPENSSL_ALGO_SHA256);
+        //openssl_sign($digestValue, $signatureValue, $privateKey, OPENSSL_ALGO_SHA256);
 
         //Crear un objeto de firma XML
         $root = $xml->documentElement;
         $signature = $xml->createElement('Signature');
         $root->appendChild($signature);
+        //$signature = $xml->setAttribute('xmlns', 'http://www.w3.org/2000/09/xmldsig#');
+        
         
         //Creamos un objeto para poner dentro el resto SignedInfo
         $signedInfo = $xml->createElement('SignedInfo');
@@ -435,9 +443,9 @@ EOF;
 
         //URL de destino donde deseas enviar el archivo
         if($produccion){
-            $urlDestino = 'https://sifen.set.gov.py/de/ws/sync/recibe.wsdl?wsdl';
+            $urlDestino = 'https://sifen.set.gov.py/de/ws/sync/recibe.wsdl';
         }else{
-            $urlDestino = 'https://sifen-test.set.gov.py/de/ws/sync/recibe.wsd?wsdl';
+            $urlDestino = 'https://sifen-test.set.gov.py/de/ws/sync/recibe.wsd';
         }
 
         //Ruta al archivo de clave privada correspondiente al certificado
@@ -467,8 +475,10 @@ EOF;
         //Obtener el contenido del elemento raíz (sin la declaración XML)
         $contenidoXML = $dom->saveXML($dom->documentElement);
 
+        /*
         //Insertgamos el contenido del archivo XML dentro de la estructura SOAP, Pag. 36 del manual
         $soapEnvelope = '
+        <?xml version="1.0" encoding="UTF-8"?>
         <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
             <soap:Header/>
             <soap:Body>
@@ -480,13 +490,29 @@ EOF;
                 </rEnviDe>
             </soap:Body>
         </soap:Envelope>';
+        */
+
+        //Insertgamos el contenido del archivo XML dentro de la estructura SOAP, Pag. 36 del manual
+        /*<?xml version="1.0" encoding="UTF-8"?>*/
+        $soapEnvelope = '<?xml version="1.0" encoding="UTF-8"?>
+        <env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+            <env:Header/>
+            <env:Body>
+                <rEnviDe xmlns="http://ekuatia.set.gov.py/sifen/xsd">
+                    <dId>20</dId>
+                    <xDE>
+                        ' . $contenidoXML . '
+                    </xDE>
+                </rEnviDe>
+            </env:Body>
+        </env:Envelope>';
 
         //Solo para saber qué le enviamos a la SIFEN
         //echo $soapEnvelope;
 
         //DomSOAP, canonizamos antes de enviar el XML
-        $domSOAP = new DOMDocument();
-        $domSOAP->loadXML($soapEnvelope);
+        //$domSOAP = new DOMDocument();
+        //$domSOAP->loadXML($soapEnvelope);
         //$soapEnvelope = $domSOAP->C14N();
 
         curl_setopt($ch, CURLOPT_POSTFIELDS, $soapEnvelope);

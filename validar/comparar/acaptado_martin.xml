@@ -1,0 +1,307 @@
+<rDE xmlns="http://ekuatia.set.gov.py/sifen/xsd" 
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="https://ekuatia.set.gov.py/sifen/xsd siRecepDE_v150.xsd">
+    <dVerFor>150</dVerFor>
+    <DE Id="01004500920001001000044412023101012371729480">
+        <dDVId>0</dDVId>
+        <dFecFirma>2023-10-10T17:21:32</dFecFirma>
+        <dSisFact>1</dSisFact>
+
+        <gOpeDE>
+            <iTipEmi>1</iTipEmi>
+            <dDesTipEmi>Normal</dDesTipEmi>
+            <dCodSeg>237172948</dCodSeg>
+            <dInfoEmi>1</dInfoEmi>
+            <dInfoFisc>Informaci&#243;n de inter&#233;s del Fisco respecto al DE</dInfoFisc>
+        </gOpeDE>
+
+        <gTimb>
+
+
+            <iTiDE>1</iTiDE>
+            <dDesTiDE>Factura electr&#243;nica</dDesTiDE>
+            <dNumTim>16682276</dNumTim>
+            <dEst>001</dEst>
+            <dPunExp>001</dPunExp>
+            <dNumDoc>0000444</dNumDoc>
+
+            <dFeIniT>2023-09-19</dFeIniT>
+        </gTimb>
+
+        <gDatGralOpe>
+            <dFeEmiDE>2023-10-10T16:47:21</dFeEmiDE>
+            <!-- D1 -->
+            <!-- D010 -->
+
+            <gOpeCom>
+
+                <iTipTra>1</iTipTra>
+                <dDesTipTra>Venta de mercader&#237;a</dDesTipTra>
+
+                <iTImp>1</iTImp>
+                <dDesTImp>IVA</dDesTImp>
+                <cMoneOpe>PYG</cMoneOpe>
+                <dDesMoneOpe>Guarani</dDesMoneOpe>
+
+            </gOpeCom>
+
+            <!-- D2 -->
+            <gEmis>
+
+                <dRucEm>450092</dRucEm>
+                <dDVEmi>0</dDVEmi>
+                <iTipCont>1</iTipCont>
+                <cTipReg>8</cTipReg>
+
+                <dNomEmi>Julio C&#233;sar L&#243;pez Gonz&#225;lez</dNomEmi>
+
+                <dDirEmi>Eusebio Ayala</dDirEmi>
+                <dNumCas>2442</dNumCas>
+                <cDepEmi>1</cDepEmi>
+                <dDesDepEmi>CAPITAL</dDesDepEmi>
+                <cDisEmi>1</cDisEmi>
+                <dDesDisEmi>ASUNCION (DISTRITO)</dDesDisEmi>
+                <cCiuEmi>1</cCiuEmi>
+                <dDesCiuEmi>ASUNCION (DISTRITO)</dDesCiuEmi>
+                <dTelEmi>+595 21 554 030</dTelEmi>
+
+                <dEmailE>importadorakatupyry@hotmail.com</dEmailE>
+
+                <!-- D2.1 -->
+
+                <gActEco>
+                    <cActEco>47522</cActEco>
+                    <dDesActEco>Comercio al por menor de pinturas y revestimientos similares</dDesActEco>
+                </gActEco>
+
+                <gActEco>
+                    <cActEco>47523</cActEco>
+                    <dDesActEco>Comercio al por menor de otros materiales de construcci&#243;n tales como ladrillos, madera, equipo sanitario
+                    </dDesActEco>
+                </gActEco>
+
+            </gEmis>
+            <!-- D3 -->
+            <gDatRec>
+
+
+                <iNatRec>1</iNatRec>
+                <!-- D202 -->
+
+                <iTiOpe>2</iTiOpe>
+                <cPaisRec>PRY</cPaisRec>
+                <dDesPaisRe>Paraguay</dDesPaisRe>
+
+
+                <iTiContRec>1</iTiContRec>
+                <dRucRec>1847534</dRucRec>
+                <dDVRec>5</dDVRec>
+
+
+                <dNomRec>RIOS OLMEDO, FATIMA KARINA</dNomRec>
+
+            </gDatRec>
+        </gDatGralOpe>
+        <!-- E -->
+
+
+        <gDtipDE>
+            <!-- E1 -->
+
+            <gCamFE>
+                <iIndPres>1</iIndPres>
+                <dDesIndPres>Operaci&#243;n presencial</dDesIndPres>
+            </gCamFE>
+
+            <!-- E5 -->
+
+            <!-- E6 --> <!-- NOTA DE REMISION ELECTRONICA -->
+
+            <!-- E7 -->
+
+            <gCamCond>
+                <iCondOpe>1</iCondOpe>
+
+                <dDCondOpe>Contado</dDCondOpe>
+
+
+                <!-- E7.1 -->
+
+                <gPaConEIni>
+
+                    <iTiPago>1</iTiPago>
+                    <dDesTiPag>Efectivo</dDesTiPag>
+                    <dMonTiPag>60000</dMonTiPag>
+                    <cMoneTiPag>PYG</cMoneTiPag>
+                    <dDMoneTiPag>Guarani</dDMoneTiPag>
+
+                    <!-- E7.1.1 -->
+
+                    <!-- E7.1.2 -->
+
+                </gPaConEIni>
+
+
+            </gCamCond>
+
+
+            <!-- E8 -->
+            <gCamItem>
+
+                <dCodInt>106120</dCodInt>
+
+                <dDesProSer>KLAUKOL GUAZUKOL PISO/PARED IMPERMEABLE 20 KG</dDesProSer>
+                <cUniMed>77</cUniMed>
+                <dDesUniMed>UNI</dDesUniMed>
+
+                <dCantProSer>3.0000</dCantProSer>
+
+
+                <!-- E8.1 -->
+                <gValorItem>
+                    <dPUniProSer>20000.00000000</dPUniProSer>
+
+
+                    <dTotBruOpeItem>60000.00000000</dTotBruOpeItem>
+                    <gValorRestaItem>
+                        <dDescItem>0.00</dDescItem>
+
+                        <dTotOpeItem>60000.00000000</dTotOpeItem>
+
+                    </gValorRestaItem>
+                </gValorItem>
+                <!-- E8.2 -->
+
+
+                <gCamIVA>
+                    <iAfecIVA>1</iAfecIVA>
+                    <dDesAfecIVA>Gravado IVA</dDesAfecIVA>
+                    <dPropIVA>100</dPropIVA>
+                    <dTasaIVA>10</dTasaIVA>
+
+                    <dBasGravIVA>54545.45454545</dBasGravIVA>
+                    <dLiqIVAItem>5455.00000000</dLiqIVAItem>
+                    <dBasExe>0</dBasExe>
+
+
+                </gCamIVA>
+
+
+            </gCamItem>
+
+
+        </gDtipDE>
+        <!-- F -->
+
+        <gTotSub>
+            <dSubExe>0.00000000</dSubExe>
+            <dSub5>0.00000000</dSub5>
+            <dSub10>60000.00000000</dSub10>
+            <dTotOpe>60000.00000000</dTotOpe>
+            <dTotDesc>0.00000000</dTotDesc>
+            <dTotDescGlotem>0.00000000</dTotDescGlotem>
+            <dTotAntItem>0</dTotAntItem>
+            <dTotAnt>0</dTotAnt>
+            <dPorcDescTotal>0.00000000</dPorcDescTotal>
+            <dDescTotal>0.00000000</dDescTotal>
+            <dAnticipo>0</dAnticipo>
+            <dRedon>0.0000</dRedon>
+            <dTotGralOpe>60000.00000000</dTotGralOpe>
+            <dIVA5>0.00000000</dIVA5>
+            <dIVA10>5455.00000000</dIVA10>
+            <dTotIVA>5455.00000000</dTotIVA>
+            <dBaseGrav5>0.00000000</dBaseGrav5>
+            <dBaseGrav10>54545.45454545</dBaseGrav10>
+            <dTBasGraIVA>54545.45454545</dTBasGraIVA>
+
+        </gTotSub>
+
+        <!-- H -->
+
+
+        <!-- NOTA DE CREDITO CON DOCUMENTO ODOO -->
+
+
+    </DE>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <SignedInfo>
+            <CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+            <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+            <Reference URI="#01004500920001001000044412023101012371729480">
+                <Transforms>
+                    <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                    <Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                </Transforms>
+                <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+                <DigestValue>jTz9TS1kIpquba/VAjKjiMsOwaVGrzCZv5lC0Oq90Zo=</DigestValue>
+            </Reference>
+        </SignedInfo>
+        <SignatureValue>
+            ADwMmOwGldzbj+H0Cw/P7tCzkuTVPR/dzRoUrx2NOToR10Q9LRqMbdwX9q93SrcSTUlOtWTyEMy/iTc7ofmzYZmwhEftwHJ3ZLZb5i4TUFxUhojg8+mMJ3+nJXUXZQFP9FQfPzPw/1WoAD83KlkmUjXRzJME/2rOrsD6fg4yif4qrG1W430T+XSPSzgvF75FgS3n23tAqCaP/o7acKeVlNX2N790WWLaCug3fQHmfd4viKXM0hiTFcxbbZh9MGuv0Ih2840VRuqw5pLrGTyvO6zg9f3xvtoURfe4bkCQJ1GOB8bngCG9O7DQVFFBuOBUfICqYvPP1ePRjvu+hQYPeg==
+        </SignatureValue>
+        <KeyInfo>
+            <X509Data>
+                <X509Certificate>MIIKXDCCCESgAwIBAgITXAAAzzt/6YQGO2+/WAAAAADPOzANBgkqhkiG9w0BAQsF
+                    ADBXMRcwFQYDVQQFEw5SVUMgODAwODA2MTAtNzEVMBMGA1UEChMMQ09ERTEwMCBT
+                    LkEuMQswCQYDVQQGEwJQWTEYMBYGA1UEAxMPQ0EtQ09ERTEwMCBTLkEuMB4XDTIz
+                    MDEyNjEzMjEzNVoXDTI0MDEyNjEzMjEzNVowga4xIzAhBgNVBAMTGkpVTElPIENF
+                    U0FSIExPUEVaIEdPTlpBTEVaMSswKQYDVQQKEyJDRVJUSUZJQ0FETyBDVUFMSUZJ
+                    Q0FETyBUUklCVVRBUklPMQswCQYDVQQGEwJQWTEUMBIGA1UEKhMLSlVMSU8gQ0VT
+                    QVIxFzAVBgNVBAQTDkxPUEVaIEdPTlpBTEVaMREwDwYDVQQFEwhDSTQ1MDA5MjEL
+                    MAkGA1UECxMCRjEwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCsTbj0
+                    wB4JyJf7i8AA6fsKHEoD6CubNM2gQS6qUZIzd9TX8MJ5SvEG5V7ntQQ74hmYp+bu
+                    IOWZoBqq7oJ9aJcKjRojBjW1RVgnJaFXxm76dbddYttkBB2OqfcMilDCBg8RFeFK
+                    WimgfougW1CT0h7Il0Z1IxsxIsDmirguyn5RsO5kzXBjjaz0693HZrqy+Z2JNaqK
+                    IPfwP4pHyBIuAlQqW15Uslu9zuHktWShDanvrh+5N56bbbBneoisw2jNNSDedEzy
+                    bKBkmg1IsIO3P4TZU/nD6ZsVP2ESlLY3RbL+/levRqnWZwp7JwXrAABXJHofwTGD
+                    /Di1kLUSmHBGLvEJAgMBAAGjggXHMIIFwzAOBgNVHQ8BAf8EBAMCBeAwDAYDVR0T
+                    AQH/BAIwADAgBgNVHSUBAf8EFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwHQYDVR0O
+                    BBYEFBrcb4zS2nzOwgNxKJS8PHkXu0UOMB8GA1UdIwQYMBaAFCf22jsLf5P4WRLQ
+                    FapCz7KWlj1FMIGIBgNVHR8EgYAwfjB8oHqgeIY6aHR0cDovL2NhMS5jb2RlMTAw
+                    LmNvbS5weS9maXJtYS1kaWdpdGFsL2NybC9DQS1DT0RFMTAwLmNybIY6aHR0cDov
+                    L2NhMi5jb2RlMTAwLmNvbS5weS9maXJtYS1kaWdpdGFsL2NybC9DQS1DT0RFMTAw
+                    LmNybDCB+AYIKwYBBQUHAQEEgeswgegwRgYIKwYBBQUHMAKGOmh0dHA6Ly9jYTEu
+                    Y29kZTEwMC5jb20ucHkvZmlybWEtZGlnaXRhbC9jZXIvQ0EtQ09ERTEwMC5jZXIw
+                    RgYIKwYBBQUHMAKGOmh0dHA6Ly9jYTIuY29kZTEwMC5jb20ucHkvZmlybWEtZGln
+                    aXRhbC9jZXIvQ0EtQ09ERTEwMC5jZXIwKgYIKwYBBQUHMAGGHmh0dHA6Ly9jYTEu
+                    Y29kZTEwMC5jb20ucHkvb2NzcDAqBggrBgEFBQcwAYYeaHR0cDovL2NhMi5jb2Rl
+                    MTAwLmNvbS5weS9vY3NwMIIDCgYDVR0gBIIDATCCAv0wggL5BgsrBgEEAYOucAEB
+                    BDCCAugwSgYIKwYBBQUHAgEWPmh0dHA6Ly93d3cuY29kZTEwMC5jb20ucHkvcmVw
+                    b3NpdG9yaW8tZGUtZG9jdW1lbnRvcy1wdWJsaWNvcy8AMIIBRgYIKwYBBQUHAgIw
+                    ggE4HoIBNABDAGUAcgB0AGkAZgBpAGMAYQBkAG8AIABjAHUAYQBsAGkAZgBpAGMA
+                    YQBkAG8AIABkAGUAIABmAGkAcgBtAGEAIABlAGwAZQBjAHQAcgDzAG4AaQBjAGEA
+                    IAB0AGkAcABvACAARgAxACAAKABjAGwAYQB2AGUAcwAgAGUAbgAgAG0A8wBkAHUA
+                    bABvACAAcwBvAGYAdAB3AGEAcgBlACkAIABzAHUAagBlAHQAYQAgAGEAIABsAGEA
+                    cwAgAGMAbwBuAGQAaQBjAGkAbwBuAGUAcwAgAGQAZQAgAHUAcwBvACAAZQB4AHAA
+                    dQBlAHMAdABhAHMAIABlAG4AIABsAGEAIABEAFAAQwAgAGQAZQBsACAAUABDAFMA
+                    QwAgAEMATwBEAEUAMQAwADAAIABTAC4AQQAuMIIBTgYIKwYBBQUHAgIwggFAHoIB
+                    PABRAHUAYQBsAGkAZgBpAGUAZAAgAGMAZQByAHQAaQBmAGkAYwBhAHQAZQAgAG8A
+                    ZgAgAGUAbABlAGMAdAByAG8AbgBpAGMAIABzAGkAZwBuAGEAdAB1AHIAZQAgAHQA
+                    eQBwAGUAIABGADEAIAAoAGsAZQB5AHMAIABpAG4AIABzAG8AZgB0AHcAYQByAGUA
+                    IABtAG8AZAB1AGwAZQApACAAcwB1AGIAagBlAGMAdAAgAHQAbwAgAHQAaABlACAA
+                    YwBvAG4AZABpAHQAaQBvAG4AcwAgAG8AZgAgAHUAcwBlACAAcwBlAHQAIABmAG8A
+                    cgB0AGgAIABpAG4AIAB0AGgAZQAgAEMAUABTACAAbwBmACAAdABoAGUAIABQAEMA
+                    UwBDACAAQwBPAEQARQAxADAAMAAgAFMALgBBAC4wgawGA1UdEQSBpDCBoYEfSU1Q
+                    T1JUQURPUkFLQVRVUFlSWUBIT1RNQUlMLkNPTaR+MHwxKTAnBgNVBA0TIEZJUk1B
+                    IEVMRUNUUk9OSUNBIERFIE5JVkVMIE1FRElPMRQwEgYDVQQMEwtQUk9QSUVUQVJJ
+                    TzEUMBIGA1UEBRMLUlVDNDUwMDkyLTAxIzAhBgNVBAoTGkxPUEVaIEdPTlpBTEVa
+                    IEpVTElPIENFU0FSMA0GCSqGSIb3DQEBCwUAA4ICAQBpuAXLErRa2w8fCy8/tOFS
+                    4PBx3kzA7Pu38C6o77mX/qLsICWZgMUw/LCmO+RtXV8oa/TKpjGSHUtrskT6QAWg
+                    IbPUmj78TaEPn/TWM8bVo9T/QowT39Nx0jaccBxS+u/awGJq0ODKD1UHFMAo+cZQ
+                    SBgf3t4KfDZS34Ox/MMlSjOAyIsxB2LuHHVUzyXwLL2uul26tri2JfhMqwhEiL1r
+                    HDIUQdIwgxeE6JICVOlOe9djPNUI1UqaMsgANBIduQbxoYsxaFFvbhI0b9kuDBvH
+                    OUx5CMG91CTpoDFv+mv4mxAv1vkIqA+JfOQF+erHgzLyfDgWvOHGmwm/28+XpmT6
+                    KrbOAc+QzhF7RTPikj+fmukaP7uiwmLPSBOzD+pTD1d2zJit8pOWHYsstFHCS/tO
+                    TmM4F1WmJ+TDslLgwctd6ymyOK/F0kOCjn6CvNDThh/O+YBc97eiaAusajPV13l6
+                    uW/duYB04ZWF5LAPaxBOWdPgaEP7/d3faOyQlNYWGIo/iR7NDE7PsGN0oG0e0nSG
+                    bfxqFTgj7Knuoa9gscgxh/XqIxrmoInGExRwZhw1MJD0jfj9IrDFYNSRdGYyh2qO
+                    BmGJswTiDdXQZhvIQfpK2mfscPkUay5J9M+vfdvhzmIGHaFnmVf+7akGumIazIwl
+                    OMKUgm+tLo9nSjynLseiWw==
+                </X509Certificate>
+            </X509Data>
+        </KeyInfo>
+    </Signature>
+    <gCamFuFD>
+        <dCarQR>https://ekuatia.set.gov.py/consultas/qr?nVersion=150&amp;Id=01004500920001001000044412023101012371729480&amp;dFeEmiDE=323032332d31302d31305431363a34373a3231&amp;dRucRec=1847534&amp;dTotGralOpe=60000.00000000&amp;dTotIVA=5455.00000000&amp;cItems=1&amp;DigestValue=6a547a395453316b4970717562612f56416a4b6a694d734f77615647727a435a76356c43304f7139305a6f3d&amp;IdCSC=0001&amp;cHashQR=9f21202d8a14aa5b8da8caa1208ab1a4d254082ef446cf0c72e9b9da442dc43c</dCarQR>
+    </gCamFuFD>
+</rDE>
