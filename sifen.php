@@ -499,7 +499,7 @@ EOF;
             <env:Header/>
             <env:Body>
                 <rEnviDe xmlns="http://ekuatia.set.gov.py/sifen/xsd">
-                    <dId>20</dId>
+                    <dId>25</dId>
                     <xDE>
                         ' . $contenidoXML . '
                     </xDE>
@@ -533,7 +533,7 @@ EOF;
         //Configura la ruta al archivo de la CA raíz (si es necesario)
         //curl_setopt($ch, CURLOPT_CAINFO, 'ruta/a/la/ca-raiz.crt');
 
-        //Configura para recibir una respuesta del servidor (opcional)
+        //Configura para recibir una respuesta del servidor
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         //Ejecuta la solicitud cURL

@@ -1,5 +1,5 @@
 <?php
-header ("Content-Type:text/xml");
+//header ("Content-Type:text/xml");
 
 //ESTE JSON ES PARA HACER PRUEBAS NADA MÁS
 $json = 
@@ -85,6 +85,7 @@ $json =
         }
     ]
 }';
+
 
 
 include 'sifen.php';
