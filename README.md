@@ -22,8 +22,7 @@ Se debe crear una carpeta llaves dentro de la cual se deberá meter las llaves n
 2. Para la utilización de aravo.php se debe habilitar socket
 
 # Ayudas
-1. Si necesitan alguna ayuda con la implementación de la misma pueden contactar con PAULO DANIEL VILLAMAYOR al +595 992 625873 Tracertsystem
-2. O Juan Zamphirópolos +595 961 804041
+No estamos más desarrollando esta librería de momento.
 
 # sifen.php
 El archivo sifen.php ya es una clase en si misma.
